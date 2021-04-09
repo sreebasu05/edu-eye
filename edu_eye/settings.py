@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'principal',
     'student',
     'teacher',
+    'crispy_forms',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

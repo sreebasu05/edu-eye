@@ -2,19 +2,19 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container sidetitle">
-
-  <h1 class="subheading">Add course</h1>
-
-
-
+    <h1 class="subheading">Add unit</h1>
   <form method="POST">
-    {% csrf_token |as_crispy_field %}
+    {% csrf_token %}
     <div class="row">
-      {{ form.code |as_crispy_field }}
+      {{ form.unit_no |as_crispy_field }}
     </div>
     <div class="row">
       {{ form.name |as_crispy_field }}
     </div>
+    <div class="row">
+      {{ form.course |as_crispy_field }}
+    </div>
+
 
     <button type="submit" class="titlebutton btn btn-md">Save</button>
   </form>
