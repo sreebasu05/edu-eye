@@ -1,0 +1,46 @@
+
+{% block content %}
+<div class="container-fluid sidetitle">
+  <div class="row">
+    <div class="col-6 border-right">
+      <h1 class="subheading">Add your Personal Details</h1>
+    </div>
+    <div class="col-6">
+
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-6">
+            {{ form.gender }}
+          </div>
+           </div>
+        <div class="row">
+          <div class="col-7">
+            {{ form.first_name }}
+          </div>
+          <div class="col-5">
+            {{ form.last_name}}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-5">
+            {{ form.department }}
+          </div>
+          <div class="col-4">
+            {{ form.phone }}
+          </div>
+          <div class="col-3">
+            {{ form.dob }}
+          </div>
+        </div>
+
+        <button type="submit" class="titlebutton btn btn-md">Save</button>
+      </form>
+    </div>
+  </div>
+  </div>
+  {% endblock content %}
+
+
