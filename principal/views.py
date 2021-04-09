@@ -24,8 +24,13 @@ def view_courses(request):
     return render(request,'principal/viewcourses.html',context)
 
 def completedetails_course(request,id):
-<<<<<<< HEAD
-    return render(request,'principal/completedetails_course.html')
+    course = Course.objects.get(pk=id)
+
+    print(course.name)
+    units = Unit.objects.filter(course= course)
+    context ={'course' : course, 'units' : units}
+    return render(request,'principal/completedetails_course.html',context)
+
 
 def add_unit(request):
     if request.method == 'POST':
@@ -34,7 +39,7 @@ def add_unit(request):
             instance = fm.save(commit=False)
             instance.save()
             return render(request,'principal/home.html')
-            # return render(request,'teacher/home.html')
+        # return render(request,'teacher/home.html')
         else:
             messages.error(request, 'Please enter valid details')
             return render(request,'principal/home.html')
@@ -42,13 +47,5 @@ def add_unit(request):
         fm=UnitForm()
         profile=TeacherProfile.objects.get(teacher=request.user)
         print(profile)
-        # form = UnitForm(initial={'course': request.user.teacher.})
+    # form = UnitForm(initial={'course': request.user.teacher.})
         return render(request,'principal/create_unit.html',{'form':fm})
-=======
-    course = Course.objects.get(pk=id)
-
-    print(course.name)
-    units = Unit.objects.filter(course= course)
-    context ={'course' : course, 'units' : units}
-    return render(request,'principal/completedetails_course.html',context)
->>>>>>> 84ff5ff7fdbb73926d465a1bd3708a58a7e72278
