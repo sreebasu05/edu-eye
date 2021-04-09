@@ -24,6 +24,7 @@ def view_courses(request):
     return render(request,'principal/viewcourses.html',context)
 
 def completedetails_course(request,id):
+<<<<<<< HEAD
     return render(request,'principal/completedetails_course.html')
 
 def add_unit(request):
@@ -43,3 +44,11 @@ def add_unit(request):
         print(profile)
         # form = UnitForm(initial={'course': request.user.teacher.})
         return render(request,'principal/create_unit.html',{'form':fm})
+=======
+    course = Course.objects.get(pk=id)
+
+    print(course.name)
+    units = Unit.objects.filter(course= course)
+    context ={'course' : course, 'units' : units}
+    return render(request,'principal/completedetails_course.html',context)
+>>>>>>> 84ff5ff7fdbb73926d465a1bd3708a58a7e72278
