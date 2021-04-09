@@ -16,3 +16,12 @@ def add_course(request):
     else:
         fm=CourseForm()
         return render(request,'principal/create_course.html',{'form':fm})
+
+def view_courses(request):
+    courses = Course.objects.all()
+    print(courses)
+    context ={'courses' : courses}
+    return render(request,'principal/viewcourses.html',context)
+
+def completedetails_course(request,id):
+    return render(request,'principal/completedetails_course.html')
