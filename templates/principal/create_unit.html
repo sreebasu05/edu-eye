@@ -1,0 +1,34 @@
+
+{% block content %}
+<div class="container-fluid sidetitle">
+  <div class="row">
+    <div class="col-6 border-right">
+      <h1 class="subheading">Add unit</h1>
+    </div>
+    <div class="col-6">
+
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-6">
+            {{ form.unit_no }}
+          </div>
+           </div>
+        <div class="row">
+          <div class="col-7">
+            {{ form.name }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-7">
+            {{ form.course }}
+          </div>
+        </div>
+
+        <button type="submit" class="titlebutton btn btn-md">Save</button>
+      </form>
+    </div>
+  </div>
+  </div>
+  {% endblock content %}
