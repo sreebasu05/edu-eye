@@ -1,0 +1,51 @@
+{% extends 'principal/base.html' %}
+
+{% block head %}
+
+
+{% endblock head %}
+{% block body %}
+{% if courses %}
+<body>
+
+    <h1>Courses</h1>
+    <hr>
+
+    <table>
+        <tr id="header">
+            <th scope="col">S.No</th>
+        <th scope="col">Course Code</th>
+        <th scope="col">Course Name</th>
+        <th scope="col">Actions</th>
+        </tr>
+        {%  for c in courses %}
+
+
+
+
+      <tr>
+
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ c.code }}</td>
+        <td>{{ c.name }}</td>
+        <td>
+         
+        <a href="{%url 'completedetails_course' c.id %}" class="btn btn-info text-white">View</a>
+        </td>
+        
+
+
+      </tr>
+      {% endfor %}
+
+      {% else %}
+
+      <h6 style="margin-top: 100px;color: #c9302c"> No courses present!!! </h6>
+
+      {% endif %}
+
+    </table>
+
+</body>
+
+{% endblock body %}
