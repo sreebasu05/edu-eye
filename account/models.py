@@ -86,8 +86,10 @@ class Session(models.Model):
 
 # to record the course name :::: Maths-6, English-5
 class Course(models.Model):
-    code = models.IntegerField(unique=True)
-    name = models.TextField(max_length=20)
+    SUBJECT = ((1, "Mathematics"), (2, "English"),
+                  (3, "Hindi"), (4, "Science"))
+    class_no = models.IntegerField(unique=True)
+    name = models.IntegerField(default=1,choices=SUBJECT)
 
     def __str__(self):
         return self.name
