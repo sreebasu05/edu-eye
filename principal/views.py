@@ -24,4 +24,9 @@ def view_courses(request):
     return render(request,'principal/viewcourses.html',context)
 
 def completedetails_course(request,id):
-    return render(request,'principal/completedetails_course.html')
+    course = Course.objects.get(pk=id)
+
+    print(course.name)
+    units = Unit.objects.filter(course= course)
+    context ={'course' : course, 'units' : units}
+    return render(request,'principal/completedetails_course.html',context)
