@@ -8,9 +8,7 @@ from django.contrib import messages
 
 
 def home_teacher(request):
-    uid = request.user.id
-    Teacher = get_object_or_404(TeacherProfile, teacher_id=uid)
-    Teaches = TeacherBatchCourse.objects.filter(teacher_details=Teacher) 
+    
     return render(request, 'teacher/home.html')
     
 def TeachProfile(request):
