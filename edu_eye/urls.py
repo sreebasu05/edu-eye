@@ -27,8 +27,6 @@ urlpatterns = [
     path('set-new-password/<uidb64>/<token>',views.SetNewPasswordView.as_view(), name='set-new-password'),
     path('student/',include('student.urls') ),
     path('teacher/',include('teacher.urls') ),
-    
-    
+    path('principal/', include('principal.urls'))
+
 ]
-
-

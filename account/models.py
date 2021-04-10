@@ -86,8 +86,10 @@ class Session(models.Model):
 
 # to record the course name :::: Maths-6, English-5
 class Course(models.Model):
-    code = models.IntegerField(unique=True)
-    name = models.TextField(max_length=20)
+    SUBJECT = ((1, "Mathematics"), (2, "English"),
+                  (3, "Hindi"), (4, "Science"))
+    class_no = models.IntegerField(unique=True)
+    name = models.IntegerField(default=1,choices=SUBJECT)
 
     def __str__(self):
         return self.name
@@ -95,26 +97,27 @@ class Course(models.Model):
 
 # to record the batch details :::: Class-6, Class-5
 class Batch(models.Model):
-    name = models.CharField(max_length=10, unique=True)
+    in_class = models.IntegerField(default=None)
+    section = models.CharField(max_length=1, default=None)
     session = models.ForeignKey(Session, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return str(self.in_class) + "-" + self.section
 
 
 
 #to store all necessary details of a student
 class StudentProfile(models.Model):
     GENDER = (('M','MALE'),('F','FEMALE'))
-    DEPARTMENT = ((1, "Computer Science and Engineering"), (2, "Electronics and Communications Engineering"),
-                  (3, "Electrical Engineering"), (4, "Mechanical Engineering"))
+    # DEPARTMENT = ((1, "Computer Science and Engineering"), (2, "Electronics and Communications Engineering"),
+    #               (3, "Electrical Engineering"), (4, "Mechanical Engineering"))
 
     student = models.OneToOneField(User,on_delete=models.CASCADE)
     gender = models.CharField(default='M',choices=GENDER, max_length=1)
     student_batch = models.ForeignKey(Batch, on_delete=models.CASCADE, null=True, blank=False)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    department = models.IntegerField(default=1,choices=DEPARTMENT)
+    # department = models.IntegerField(default=1,choices=DEPARTMENT)
     phone = models.IntegerField()
     dob = models.DateField()
 
@@ -129,14 +132,14 @@ class StudentProfile(models.Model):
 class TeacherProfile(models.Model):
 
     GENDER = (('M','MALE'),('F','FEMALE'))
-    DEPARTMENT = ((1, "Computer Science and Engineering"), (2, "Electronics and Communications Engineering"),
-                  (3, "Electrical Engineering"), (4, "Mechanical Engineering"))
+    SUBJECT = ((1, "Mathematics"), (2, "English"),
+                  (3, "Hindi"), (4, "Science"))
 
     teacher = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(default='M',choices=GENDER, max_length=1)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    department = models.IntegerField(default=1,choices=DEPARTMENT)
+    department = models.IntegerField(default=1,choices=SUBJECT)
     phone = models.IntegerField()
     dob = models.DateField()
 
