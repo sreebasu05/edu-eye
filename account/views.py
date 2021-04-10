@@ -139,9 +139,11 @@ def login_view(request):
         user = authenticate(email=email, password=password)
         if user is not None:
             login(request, user)
-
+            if request.user.is_principal:
+                return redirect('home_HOD')
             if request.user.is_student:
                 return redirect('profile_student')
+
             if request.user.is_teacher:
                 return redirect('profileform_teacher')
 
