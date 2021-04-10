@@ -11,7 +11,16 @@
 <div>
 
 <h1>Welcome {{ name }}</h1>
+      <nav class="container navbar navbar-expand-lg navbar-light bg-light" aria-label="Right Align">
+    <a class="navbar-brand" href="home_student">Back to Home</a>
+<button type="button" class="btn btn-default" aria-label="Right Align">
+  <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+</button>
+    </button>
+
+  </nav>
   {% if courses %}
+
 
     {% for course in courses %}
         <ul class="list-group">
@@ -20,6 +29,7 @@
       </li>
         </ul>
     {% endfor %}
+
 
   {% else %}
     <p>There are no courses assigned in this batch yet.</p>

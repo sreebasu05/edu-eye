@@ -62,4 +62,12 @@ def dash(request):
     }
     return render(request, 'student/student_dash.html', context)
 
+def profile(request):
+    student = student = StudentProfile.objects.get(student=User.object.get(id=request.user.id))
+    context = {
+        'student': student
+    }
+
+    return render(request, 'student/profile.html', context)
+
 
