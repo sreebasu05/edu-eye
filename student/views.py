@@ -1,5 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.views import generic
+from django.views.generic.base import View
+
 from .forms import StudentProfileForm
 from account.models import *
 
@@ -23,15 +26,15 @@ def student_profile(request):
             instance.student = request.user
             print(instance.id)
             # teacher_id=instance.id
-            num = Batch.objects.filter(in_class=request.POST.get('class'), section=request.POST.get('section')).count()
+            #num = Batch.objects.filter(in_class=request.POST.get('class'), section=request.POST.get('section')).count()
 
-            if(num == 0):
-                Batch.objects.create(
-                    in_class=request.POST.get('class'),
-                    section=request.POST.get('section')
-                ).save()
-
-            instance.batch = Batch.objects.get(in_class=request.POST.get('class'), section=request.POST.get('section'))
+            # if(num == 0):
+            #     Batch.objects.create(
+            #         in_class=request.POST.get('class'),
+            #         section=request.POST.get('section')
+            #     ).save()
+            #
+            # instance.batch = Batch.objects.get(in_class=request.POST.get('class'), section=request.POST.get('section'))
 
 
             instance.save()
@@ -45,3 +48,18 @@ def student_profile(request):
         fm=StudentProfileForm()
         print("hello")
         return render(request,'student/profile-form.html',{'form':fm})
+
+
+def dash(request):
+    uid = request.user.id
+    print(request.user.email)
+    student = StudentProfile.objects.get(student=User.object.get(id=uid))
+    print(student.first_name)
+    courses = BatchCourse.objects.filter(batch=student.student_batch)
+    context = {
+        'courses': courses,
+        'name':student.first_name,
+    }
+    return render(request, 'student/student_dash.html', context)
+
+
