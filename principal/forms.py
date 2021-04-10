@@ -10,4 +10,4 @@ class CourseForm(forms.ModelForm):
 class UnitForm(forms.ModelForm):
     class Meta:
         model=Unit
-        fields='__all__'
+        fields=['unit_no','name']

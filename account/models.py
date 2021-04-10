@@ -90,7 +90,7 @@ class Course(models.Model):
                   ("HINDI", "Hindi"), ("SCI", "Science"))
     
     name = models.TextField(default=1,choices=SUBJECT)
-    class_no = models.IntegerField(unique=True)
+    class_no = models.IntegerField()
     def __str__(self):
         return str(self.name) +"_"+str(self.class_no)
 
@@ -181,7 +181,7 @@ class Unit(models.Model):
     name = models.TextField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     def __str__(self):
-        return str(self.name)+ " - " + str(self.course.name)
+        return str(self.name)+ " - " + str(self.course.name)+"-" +str(self.course.class_no)
 
 
 # this will maintain record of completed units of coursebatch
