@@ -2,10 +2,11 @@ from django.contrib import messages
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.views import generic
 from django.views.generic.base import View
-
+from django.contrib import messages
 from .forms import StudentProfileForm
 from account.models import *
-
+from django.contrib.auth.decorators import login_required
+from principal.models import Applicants_CR
 
 def home_student(request):
     return render(request, 'student/home.html')
@@ -71,3 +72,22 @@ def profile(request):
     return render(request, 'student/profile.html', context)
 
 
+def apply_CR(request):
+    
+    if request.method=="POST":
+        profile = StudentProfile.objects.get(student= request.user)
+        print(type(profile), profile.id)
+        try:
+            app = Applicants_CR.objects.get(applicant=profile)
+            messages.error(request,'You have already applied for batch representative')
+            return redirect('home_student')
+
+        except Applicants_CR.DoesNotExist:
+            Applicants_CR.objects.create(
+                applicant = profile,
+            ).save()
+            messages.success(request,'Your application is received!!')
+            return redirect('home_student')
+    else:
+
+        return render(request,'student/home.html')

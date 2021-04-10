@@ -2,6 +2,13 @@ from django.shortcuts import render
 from .forms import *
 from django.contrib import messages
 from account.models import *
+from principal.models import Applicants_CR
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.shortcuts import render,HttpResponse,redirect
 # Create your views here.
 def add_course(request):
     if request.method == 'POST':
@@ -75,3 +82,63 @@ def add_unit(request, id):
         print(profile)
     # form = UnitForm(initial={'course': request.user.teacher.})
         return render(request,'principal/create_unit.html',{'form':fm})
+
+
+
+def viewapplicants_CR(request):
+    item = Applicants_CR.objects.all()
+    context ={'item' : item}
+    return render(request,'principal/viewapplicants_CR.html',context)
+
+
+def completedetails_CR(request,id):
+    
+    item=Applicants_CR.objects.get(pk=id)
+    context = {'viewjob':item}
+    return render(request,'principal/completedetails_CR.html',context)
+
+def deleteApplication_CR(request,id):
+    
+    item=Applicants_CR.objects.get(pk=id)
+    item.delete()
+    messages.warning(request,'Application has been deleted')
+    return redirect('viewapplicants_CR')
+    
+
+def confirmApplication_CR(request,id):
+    
+    item = Applicants_CR.objects.get(pk=id)
+    p = StudentProfile.objects.get(student=item.applicant.student)
+    email= p.student.email
+    flag=True
+    
+
+    if not StudentProfile.objects.filter(is_batchRepresntative=True).exists():
+        p.is_batchRepresntative = True
+        
+        
+        p.save()
+        
+        
+        email_subject=' edu-eye'
+        message='Congratulations!!! You are selected as BRANCH REPRESENTATIVE for your BATCH'
+        email_message = EmailMessage(
+        email_subject,
+        message,
+        settings.EMAIL_HOST_USER,
+        [email]
+        )
+        email_message.send()
+        messages.success(request,'Application for user '+p.student.email +' confirmed')
+        print(p.student.email)
+        it=Applicants_CR.objects.get(pk=id)
+        it.delete()
+        item = Applicants_CR.objects.all()
+        context ={'item' : item}
+        return redirect('viewapplicants_CR')
+
+    else:
+        messages.error(request,'Branch Representative for batch already exist')
+        item = Applicants_CR.objects.all()
+        context ={'item' : item}
+        return redirect('viewapplicants_CR')

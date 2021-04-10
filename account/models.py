@@ -120,6 +120,7 @@ class StudentProfile(models.Model):
     # department = models.IntegerField(default=1,choices=DEPARTMENT)
     phone = models.IntegerField()
     dob = models.DateField()
+    is_batchRepresntative = models.BooleanField(default=False)
 
 
 

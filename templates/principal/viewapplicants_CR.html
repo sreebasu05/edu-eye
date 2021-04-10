@@ -1,0 +1,49 @@
+{% extends 'base.html' %} 
+{% block body %}
+{% if item %}
+<body>
+
+    <h1>Applicants Batch Representative</h1>
+    <hr>
+
+    <table>
+        <tr id="header">
+            <th scope="col">S.No</th>
+        <th scope="col">Name</th>
+        <th scope="col">email</th>
+        <th scope="col">Batch</th>
+        
+        <th scope="col">Actions</th>
+        </tr>
+        {%  for ite in item %}
+
+
+
+
+      <tr>
+
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ ite.applicant.first_name }}</td>
+        <td>{{ ite.applicant.student.email }}</td>
+        <td>{{ ite.applicant.student_batch }}</td>
+        
+        <td>
+         
+        <a href="{%url 'completedetails_CR' ite.id %}" class="btn btn-info text-white">View</a>
+        </td>
+        
+
+
+      </tr>
+      {% endfor %}
+
+      {% else %}
+
+      <h6 style="margin-top: 100px;color: #c9302c"> No applications present!!! </h6>
+
+      {% endif %}
+
+    </table>
+
+</body>
+{% endblock body %}
