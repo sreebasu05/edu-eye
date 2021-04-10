@@ -71,3 +71,7 @@ def profile(request):
     return render(request, 'student/profile.html', context)
 
 
+def units(request, bid):
+    batches = TrackProgressBatchCourse.objects.filter(batchcourse_id=bid)
+    print(bid)
+    return render(request, 'student/unit.html', {'batches': batches})
