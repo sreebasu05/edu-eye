@@ -8,5 +8,6 @@ urlpatterns = [
     path('student_dash', views.dash, name='StudentDash'),
     path('student_profile', views.profile, name="StudentProfile"),
     path('unit_student/<int:bid>',views.units,name="unit_student"),
+    path('giveRating/<int:bid>',views.giveRating,name="giveRating"),
 
 ]

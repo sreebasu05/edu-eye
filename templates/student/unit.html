@@ -24,7 +24,42 @@
 
                 <td>{{ batch.unit.unit_no }}</td>
                 <td>{{ batch.unit.name }}</td>
-                <td>Left</td>
+                {% if batch.is_completed %}
+                <td>
+                <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-info mx-2" data-toggle="modal"
+                                                data-target="#exampleModal1">
+                                                Give Rating for this Unit
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal1" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                        <form method="POST" action="{%url 'giveRating' bid=batch.id%}">
+                                                                    {% csrf_token %}
+                                                                    
+                                                                    
+                                                                      <input type="number" class="form-control" name="rating" id="exampleInputPassword1" placeholder="Rating 1--10">
+                                                                    
+                                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                                  </form>
+
+                                                                </div>
+                                                                
+                                                                
+                                                        </div>
+                                                </div>
+                                        </div>
+                
+                
+                </td>
+                {% else %}
+                <td>not completed yet</td>
+                {% endif %}
+                
               </tr>
               {% endfor%}
             </tbody>

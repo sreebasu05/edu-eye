@@ -69,3 +69,25 @@ def units(request, bid):
     b = BatchCourse.objects.get(pk=bid)
     print(bid)
     return render(request, 'student/unit.html', {'batches': batches, 'batch':b})
+
+
+def giveRating(request,bid):
+    track = TrackProgressBatchCourse.objects.get(pk=bid)
+
+    print(track.batchcourse)
+
+    if request.method == 'POST':
+        rating = request.POST['rating']
+        
+        print(rating)
+        
+        track.rating = track.rating + int(rating)
+        track.students_polled =track.students_polled+1
+        track.save()
+            
+        return render(request,'student/home.html')
+    else:
+        print("hello")
+        return render(request,'student/unit.html',{'bid':bid})
+
+    
