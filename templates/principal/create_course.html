@@ -1,23 +1,37 @@
 {% extends 'basic.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
-{% block content %}
-<div class="container sidetitle">
+{% block body %}
 
-  <h1 class="subheading">Add course</h1>
-
+<div class="container">
 
 
-  <form method="POST">
-    {% csrf_token  %}
-    <div class="row">
-      {{ form.class_no  }}
+  <div class="row">
+    <div class="col-6 border-right">
+      <h1 class="subheading">Add your Course</h1>
     </div>
-    <div class="row">
-      {{ form.name  }}
-    </div>
+    <div class="col-6 form">
 
-    <button type="submit" class="titlebutton btn btn-md">Save</button>
-  </form>
+
+      <form method="POST">
+        {% csrf_token  %}
+
+
+        <div class="row">
+          {{ form.class_no |as_crispy_field }}
+        </div>
+
+
+        <div class="row">
+          {{ form.name |as_crispy_field }}
+        </div>
+
+        <div class="row">
+          <button type="submit" class="titlebutton btn btn-md">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
-{% endblock content %}
+{% endblock body %}
