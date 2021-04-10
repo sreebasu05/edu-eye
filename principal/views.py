@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import *
+from django.contrib import messages
 from account.models import *
 # Create your views here.
 def add_course(request):
@@ -8,6 +9,16 @@ def add_course(request):
         if fm.is_valid():
             instance = fm.save(commit=False)
             instance.save()
+            
+            i = instance.id
+            curr_course = Course.objects.get(pk = i)
+            batches = Batch.objects.filter(in_class = curr_course.class_no)
+            for b in batches:
+                BatchCourse.objects.create(
+                batch= b,
+                course= curr_course,
+            ).save()
+            messages.success(request,'created')
             return render(request,'principal/home.html')
             # return render(request,'teacher/home.html')
         else:

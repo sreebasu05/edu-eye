@@ -86,13 +86,13 @@ class Session(models.Model):
 
 # to record the course name :::: Maths-6, English-5
 class Course(models.Model):
-    SUBJECT = ((1, "Mathematics"), (2, "English"),
-                  (3, "Hindi"), (4, "Science"))
+    SUBJECT = (("MATH", "Mathematics"), ("ENG", "English"),
+                  ("HINDI", "Hindi"), ("SCI", "Science"))
+    
+    name = models.TextField(default=1,choices=SUBJECT)
     class_no = models.IntegerField(unique=True)
-    name = models.IntegerField(default=1,choices=SUBJECT)
-
     def __str__(self):
-        return self.name
+        return str(self.name) +"_"+str(self.class_no)
 
 
 # to record the batch details :::: Class-6, Class-5
@@ -132,14 +132,16 @@ class StudentProfile(models.Model):
 class TeacherProfile(models.Model):
 
     GENDER = (('M','MALE'),('F','FEMALE'))
-    SUBJECT = ((1, "Mathematics"), (2, "English"),
-                  (3, "Hindi"), (4, "Science"))
+    SUBJECT = (("MATH", "Mathematics"), ("ENG", "English"),
+                  ("HINDI", "Hindi"), ("SCI", "Science"))
+    
+    department = models.TextField(default=1,choices=SUBJECT)
 
     teacher = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(default='M',choices=GENDER, max_length=1)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    department = models.IntegerField(default=1,choices=SUBJECT)
+    
     phone = models.IntegerField()
     dob = models.DateField()
 
