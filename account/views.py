@@ -74,6 +74,61 @@ def Studentsignup(request):
         return render(request,'account/signup_student.html')
 
 
+def Teachersignup(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        confpassword = request.POST['confpassword']
+        
+        
+        if (Accounts.object.filter(email=request.POST['email']).exists()):
+            messages.error(request,'User with this email already exists')
+            return render(request,'account/signup_teacher.html')
+
+        
+
+        elif password != confpassword:
+            messages.error(request,'Password dont match')
+            return render(request,'account/signup_teacher.html')
+
+
+        else:
+            user = Accounts.object.create_user(email=email, password = password)
+            user.is_student=False
+            user.is_teacher=True
+
+            
+            user.is_active=False
+            user.save()
+            current_site=get_current_site(request)
+            email_subject='Activate your account',
+            message=render_to_string('account/activate_account.html',
+            {
+                'user':user,
+                'domain':current_site.domain,
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                'token':generate_token.make_token(user),
+
+
+            }
+            
+            )
+            email_message = EmailMessage(
+            email_subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [email]
+            )
+            email_message.send()
+
+
+
+            messages.success(request,'Account created ,activate your account !! Mail has been sent to the registered email')
+            return redirect('login')
+    else:
+        return render(request,'account/signup_teacher.html')
+
+
 
 
 def login_view(request):

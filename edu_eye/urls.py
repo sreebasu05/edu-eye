@@ -19,7 +19,8 @@ from account import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name='index'),
-    path('signup_student',views.Studentsignup,name='signup_student'),
+    path('signup_student', views.Studentsignup, name = 'signup_student'),
+    path('signup_teacher',views.Teachersignup,name='signup_teacher'),
     path('activate/<uidb64>/<token>',views.ActivateAccountView.as_view(), name='activate'),
     path('login',views.login_view,name='login'),
     path('logout', views.logout_view,name='logout'),
