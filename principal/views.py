@@ -9,7 +9,7 @@ def add_course(request):
         if fm.is_valid():
             instance = fm.save(commit=False)
             instance.save()
-            
+
             i = instance.id
             curr_course = Course.objects.get(pk = i)
             batches = Batch.objects.filter(in_class = curr_course.class_no)
@@ -47,6 +47,7 @@ def completedetails_course(request,id):
 
 def add_unit(request, id):
     c = Course.objects.get(pk=id)
+    print(c)
     if request.method == 'POST':
         fm = UnitForm(request.POST)
         if fm.is_valid():
@@ -54,6 +55,15 @@ def add_unit(request, id):
             instance = fm.save(commit=False)
             instance.course = c
             instance.save()
+            i=instance.id
+            u = Unit.objects.get(pk=i)
+            batchcourses = BatchCourse.objects.filter(course = c)
+            # print(batchcourses)
+            for b in batchcourses:
+                TrackProgressBatchCourse.objects.create(
+                unit= u,
+                batchcourse= b,
+            ).save()
             return render(request,'principal/home.html')
         # return render(request,'teacher/home.html')
         else:

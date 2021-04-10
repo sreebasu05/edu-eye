@@ -88,9 +88,9 @@ class Session(models.Model):
 class Course(models.Model):
     SUBJECT = (("MATH", "Mathematics"), ("ENG", "English"),
                   ("HINDI", "Hindi"), ("SCI", "Science"))
-    
+
     name = models.TextField(default=1,choices=SUBJECT)
-    class_no = models.IntegerField()
+    class_no = models.IntegerField(unique=True)
     def __str__(self):
         return str(self.name) +"_"+str(self.class_no)
 
@@ -134,14 +134,14 @@ class TeacherProfile(models.Model):
     GENDER = (('M','MALE'),('F','FEMALE'))
     SUBJECT = (("MATH", "Mathematics"), ("ENG", "English"),
                   ("HINDI", "Hindi"), ("SCI", "Science"))
-    
+
     department = models.TextField(default=1,choices=SUBJECT)
 
     teacher = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(default='M',choices=GENDER, max_length=1)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    
+
     phone = models.IntegerField()
     dob = models.DateField()
 
@@ -171,7 +171,6 @@ class TeacherBatchCourse(models.Model):
 
     teacher_details = models.ForeignKey(TeacherProfile, on_delete=models.CASCADE)
     batchcourse = models.OneToOneField(BatchCourse, on_delete=models.CASCADE)
-
     def __str__(self):
         return str(self.teacher_details) + " - " + str(self.batchcourse)
 
@@ -181,18 +180,19 @@ class Unit(models.Model):
     name = models.TextField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     def __str__(self):
-        return str(self.name)+ " - " + str(self.course.name)+"-" +str(self.course.class_no)
+        return str(self.name)+ " - " + str(self.course.name)
 
 
 # this will maintain record of completed units of coursebatch
+
 class TrackProgressBatchCourse(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, null=True)
     batchcourse = models.ForeignKey(BatchCourse, on_delete=models.CASCADE,null=True)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
 
     class Meta:
         unique_together = ('unit', 'batchcourse')
 
     def __str__(self):
-        return   str(self.unit.name) +" - "+ str(self.batchcourse.batch.name)+" - "+str(self.batchcourse.course.name)
+        return   str(self.unit.name) +" - "+ str(self.batchcourse.batch.in_class)+self.batchcourse.batch.section+" - "+str(self.batchcourse.course.name)
