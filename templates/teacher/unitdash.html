@@ -22,7 +22,39 @@
 
             <td>{{batchdetail.unit.unit_no}}</td>
             <td>{{batchdetail.unit.name}}</td>
-            <td><a href="{% url 'unit_complete_teacher' bid batchdetail.unit_id %}">unit comlpete</a></td>
+            <td>
+            <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-info mx-2" data-toggle="modal"
+                                                data-target="#exampleModal1">
+                                                Enter!!
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal1" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                        <form method="POST" action="{%url 'unit_complete_teacher' bid batchdetail.unit_id%}">
+                                                                    {% csrf_token %}
+                                                                    
+                                                                      <input class="form-check-input" name="comp" type="checkbox" id="inlineCheckbox1" value="Completed">
+
+                                                                      <label class="form-check-label" for="inlineCheckbox1">Completed</label>
+                                                                      <input type="number" class="form-control" name="lecture" id="exampleInputPassword1" placeholder="No. of lectures">
+                                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                                  </form>
+
+                                                                </div>
+                                                                
+                                                                
+                                                        </div>
+                                                </div>
+                                        </div>
+                
+                
+            
+            </td>
           
          
           </tr>

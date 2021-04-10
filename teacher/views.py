@@ -97,7 +97,7 @@ def isCompleteUint(request, bid, unitid):
             return render(request,'teacher/dashboard.html',{'Teaches':Teaches})
         else:
             print("hello")
-            return render(request,'teacher/unitform.html',{'bid':bid,'unitid':unitid})
+            return render(request,'teacher/unitdash.html',{'bid':bid,'unitid':unitid})
     else:
         print("NOT A Teacher!! login as teacher :P")
         return redirect('login')
