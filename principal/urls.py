@@ -7,5 +7,6 @@ urlpatterns = [
     path('add_unit/<int:id>', views.add_unit, name="add_unit"),
     path('view_courses', views.view_courses, name="view_courses"),
     path('completedetails_course/<int:id>',views.completedetails_course,name="completedetails_course"),
-
+    path('add_teacherbatch', views.add_teacherbatch, name="add_teacherbatch"),
+    path('coursebatchdetails', views.coursebatchdetails, name="coursebatchdetails"),
 ]

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'basic.html' %}
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
@@ -6,58 +6,51 @@
 
 {% block body %}
 
+<div class="container">
+	<div class="row">
+		<div class="col-6 border-right">
+			<h1 class="subheading">Log In</h1>
+		</div>
+		<div class="col-6 form">
 
-<div class="container1">
-	<div class="img">
-		<img src="{% static 'images/bg.svg' %}">
-	</div>
-	<div class="login-content">
+			<form method="POST" action="/request-reset-email">
+				{% csrf_token %}
+				<h5 clas="row">Email</h5>
+				<div class="row">
 
-		<form method="POST" action="/request-reset-email">
-			{% csrf_token %}
-			<img src="{% static 'images/avatar.svg' %}">
-			<h2 class="title">Welcome</h2>
-			<div class="input-div one">
-				<div class="i">
-					<i class="fas fa-user"></i>
-				</div>
-				<div class="div">
-					<h5>Email</h5>
 					<input type="text" name="email" class="input">
 				</div>
-			</div>
 
 
 
-			<input type="submit" class="btn" value="Submit">
+				<input type="submit" class="btn" value="Submit">
 
-		</form>
+			</form>
+		</div>
 	</div>
-</div>
-{% endblock body %}
+	{% endblock body %}
 
-{% block script %}
-<script>
-
-	const inputs = document.querySelectorAll(".input");
+	{% block script %}
+	<script>
+		const inputs = document.querySelectorAll(".input");
 
 
-	function addcl() {
-		let parent = this.parentNode.parentNode;
-		parent.classList.add("focus");
-	}
-
-	function remcl() {
-		let parent = this.parentNode.parentNode;
-		if (this.value == "") {
-			parent.classList.remove("focus");
+		function addcl() {
+			let parent = this.parentNode.parentNode;
+			parent.classList.add("focus");
 		}
-	}
+
+		function remcl() {
+			let parent = this.parentNode.parentNode;
+			if (this.value == "") {
+				parent.classList.remove("focus");
+			}
+		}
 
 
-	inputs.forEach(input => {
-		input.addEventListener("focus", addcl);
-		input.addEventListener("blur", remcl);
-	});
-</script>
-{% endblock script %}
+		inputs.forEach(input => {
+			input.addEventListener("focus", addcl);
+			input.addEventListener("blur", remcl);
+		});
+	</script>
+	{% endblock script %}

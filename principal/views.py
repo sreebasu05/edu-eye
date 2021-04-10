@@ -75,3 +75,29 @@ def add_unit(request, id):
         print(profile)
     # form = UnitForm(initial={'course': request.user.teacher.})
         return render(request,'principal/create_unit.html',{'form':fm})
+def coursebatchdetails(request):
+    profile=TeacherProfile.objects.get(teacher=request.user)
+    courses=Course.objects.filter(name=profile.department)
+    batchcourse=[]
+    for c in courses:
+        batchcourse.append(BatchCourse.objects.filter(course=c))
+
+    return render(request,'principal/coursebatchdetails.html',{'batchcourses':batchcourse})
+
+
+
+def add_teacherbatch(request,bc):
+    if request.method == 'POST':
+        fm = TeacherBatchForm(request.POST)
+        if fm.is_valid():
+
+            instance = fm.save(commit=False)
+            instance.save()
+            return render(request,'principal/home.html')
+        # return render(request,'teacher/home.html')
+        else:
+            messages.error(request, 'Please enter valid details')
+            return render(request,'principal/home.html')
+    else:
+        fm=TeacherBatchForm()
+        return render(request,'principal/create_teacherbatch.html',{'form':fm})

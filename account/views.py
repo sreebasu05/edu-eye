@@ -19,20 +19,20 @@ from .models import User as Accounts
 
 # Create your views here.
 def index(request):
-    return render(request,'base.html')
+    return render(request,'basic.html')
 
 def Studentsignup(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
         confpassword = request.POST['confpassword']
-        
-        
+
+
         if (Accounts.object.filter(email=request.POST['email']).exists()):
             messages.error(request,'User with this email already exists')
             return render(request,'account/signup_student.html')
 
-        
+
 
         elif password != confpassword:
             messages.error(request,'Password dont match')
@@ -42,7 +42,7 @@ def Studentsignup(request):
         else:
             user = Accounts.object.create_user(email=email, password = password)
             user.is_student=True
-            
+
             user.is_active=False
             user.save()
             current_site=get_current_site(request)
@@ -56,7 +56,7 @@ def Studentsignup(request):
 
 
             }
-            
+
             )
             email_message = EmailMessage(
             email_subject,
@@ -79,13 +79,13 @@ def Teachersignup(request):
         email = request.POST['email']
         password = request.POST['password']
         confpassword = request.POST['confpassword']
-        
-        
+
+
         if (Accounts.object.filter(email=request.POST['email']).exists()):
             messages.error(request,'User with this email already exists')
             return render(request,'account/signup_teacher.html')
 
-        
+
 
         elif password != confpassword:
             messages.error(request,'Password dont match')
@@ -97,7 +97,7 @@ def Teachersignup(request):
             user.is_student=False
             user.is_teacher=True
 
-            
+
             user.is_active=False
             user.save()
             current_site=get_current_site(request)
@@ -111,7 +111,7 @@ def Teachersignup(request):
 
 
             }
-            
+
             )
             email_message = EmailMessage(
             email_subject,
@@ -135,17 +135,17 @@ def login_view(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        
+
         user = authenticate(email=email, password=password)
         if user is not None:
             login(request, user)
-            
+
             if request.user.is_student:
                 return redirect('profile_student')
             if request.user.is_teacher:
                 return redirect('profileform_teacher')
 
-            
+
 
         else:
             messages.error(request,'Enter valid email and password')
@@ -155,7 +155,7 @@ def login_view(request):
         return render(request,'account/login.html')
 
 def logout_view(request):
-    
+
     logout(request)
     return redirect('login')
 
@@ -166,7 +166,7 @@ class ActivateAccountView(View):
             user=Account.object.get(pk=uid)
         except Exception as identifier:
             user=None
-        
+
         if user is not None and generate_token.check_token(user,token):
             user.is_active=True
             user.save()
@@ -179,27 +179,27 @@ class ActivateAccountView(View):
 class RequestResetEmail(View):
     def get(self,request):
         return render(request,'account/request-reset-email.html')
-    
+
     def post(self,request):
         email=request.POST['email']
-        
-        
-        
+
+
+
         user=Accounts.object.filter(email=email)
-        
+
         if user.exists():
             current_site=get_current_site(request)
             email_subject='[Reset your password]',
             message=render_to_string('account/reset-user-password.html',
             {
-                
+
                 'domain':current_site.domain,
                 'uid':urlsafe_base64_encode(force_bytes(user[0].pk)),
                 'token':PasswordResetTokenGenerator().make_token(user[0]),
 
 
             }
-            
+
             )
             email_message = EmailMessage(
             email_subject,
@@ -209,7 +209,7 @@ class RequestResetEmail(View):
             )
             email_message.send()
 
-        
+
             messages.success(request,'we have sent you password reset link')
             return render(request,'account/request-reset-email.html')
         else:
@@ -249,6 +249,6 @@ class SetNewPasswordView(View):
             messages.error(request,'Something went wrong')
             return render(request,'account/set-new-password.html',context)
 
-        
+
 
         return render(request,'account/set-new-password.html',context)

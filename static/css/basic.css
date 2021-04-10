@@ -1,19 +1,28 @@
-body {
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 
+}
+body {
+  background-color: #7d0633 !important;
   margin-bottom: 20px;
 }
 
 p {
-  color: #89beb3;
+  color: #7d0633;
   margin-bottom: 25px;
 }
 
 h5 {
-  color: #222831;
+  color: #fbdcc4;
 }
 
 h2 {
-  color: #89beb3;
+  color: #7d0633;
 }
 
 .spacer {
@@ -21,26 +30,27 @@ h2 {
 }
 
 .container {
-  background-color: #fff;
-  color: #89beb3;
+  background-color: #7d0633 !important;
+  color: #fbdcc4 !important;
 }
 .tablehead{
-  background-color: #fff !important;
-  color: #89beb3 !important;
+  background-color: #7d0633 !important;
+  color: #fbdcc4 !important;
   font-weight: bold;
 }
+
 #navigationbar {
-  background-color: #222831;
-  color: #fff;
+  background-color: #7d0633;
+  color: #fbdcc4;
   /* color: #40514e */
 }
 
 .navbar-brand {
-  color: #89beb3;
+  color: #fbdcc4;
 }
 
 .nav-link {
-  color: #89beb3;
+  color: #fbdcc4;
 }
 
 .nav-link:hover {
@@ -48,8 +58,8 @@ h2 {
 }
 
 #title {
-  background-color: #222831;
-  color: #89beb3;
+  background-color: #7d0633;
+  color: #fbdcc4;
   padding: 15rem;
   align-items: center;
 }
@@ -67,15 +77,21 @@ h2 {
 
 .titlebutton {
   align-items: center;
-  background-color: #89beb3;
-  color: #fff;
+  background-color: #7d0633;
+  color: #fbdcc4;
   opacity: 1;
   margin-top: 5%;
 
 }
 .btn {
-  background-color: #89beb3;
-  color: #fff;
+  background-color: #7d0633;
+  color: #fbdcc4;
+}
+
+.formbtn {
+  margin-top:1%;
+  background-color: #fbdcc4;
+  color: #7d0633;
 }
 .titlebutton:hover {
   align-items: center;
@@ -85,15 +101,18 @@ h2 {
 .wrapper {
   text-align: center;
 }
-
+.row {
+  background-color: #7d0633;
+  color: #fbdcc4;
+}
 #features {
   padding-top: 20px;
-  background-color: #89beb3;
-  color: #222831;
+  background-color: #7d0633;
+  color: #fbdcc4;
 }
 
 .featurette-heading, .lead {
-  color: #222831;
+  color: #fbdcc4;
 }
 
 .feature-box {
@@ -102,9 +121,9 @@ h2 {
 }
 
 #about-us {
-  background-color: #222831;
+  background-color: #fbdcc4;
   text-align: center;
-  color: #89beb3;
+  color: #7d0633;
   padding-top: 10px;
 }
 
@@ -116,22 +135,22 @@ h2 {
   position: fixed;
   width: 100%;
   bottom: 0px;
-  background-color: #222831;
-  color: #89beb3;
+  background-color: #fbdcc4;
+  color: #7d0633;
   text-align: center;
   height: 20px;
   padding: 3% 15% 3%;
 }
 
 .sidetitle {
-  background-color: #222831;
-  color: #89beb3;
+  background-color: #fbdcc4;
+  color: #7d0633;
   align-items: center;
 }
 
 .subheading {
 
-  color: #89beb3;
+  color: #fbdcc4;
   font-size: 3.5rem;
   padding-top: 10rem;
   padding-bottom: 10rem;
@@ -139,38 +158,44 @@ h2 {
 }
 
 .button {
-  background-color: #89beb3;
-  color: #222831;
+  background-color: #7d0633;
+  color: #fbdcc4;
 }
 
 .cd {
   margin-left: 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  background-color: #89beb3;
-  color: #222831;
+  background-color: #7d0633;
+  color: #fbdcc4;
   width: 10rem;
 }
-
+.card{
+  background-color: #fbdcc4 !important;
+  color: #7d0633;
+}
 .card-body {
-  background-color: #89beb3;
+  background-color: #7d0633;
+}
+.bg-light {
+  background-color: #7d0633;
 }
 
 .list-group-item {
   margin-bottom: 1rem;
-  background-color: #89beb3;
-  color: #222831;
+  background-color: #7d0633;
+  color: #fbdcc4;
 }
 
 .alert {
-  background-color: #89beb3;
+  background-color: #7d0633;
   font-size: 1rem;
 }
 
 .dashboardbutton {
   align-items: center;
-  background-color: #89beb3;
-  color: #222831;
+  background-color: #7d0633;
+  color: #fbdcc4;
   opacity: 1;
   margin-right: 5px;
 }
@@ -185,18 +210,18 @@ h2 {
 }
 
 .center-card {
-  background-color: #89beb3;
-  color: #222831;
+  background-color: #7d0633;
+  color: #fbdcc4;
   /* text-align: center; */
 }
 
 .templatebutton {
-  background-color: #222831;
-  color: #89beb3;
+  background-color: #fbdcc4;
+  color: #7d0633;
 }
 
 .blockquote{
-  background-color: #fff;
+  background-color: #fbdcc4;
 }
 
 .form {

@@ -16,7 +16,6 @@ def TeachProfile(request):
     return render(request, 'teacher/profile.html',{'Teacher':Teacher})
 
 
-
 def CreateProfile(request):
     if(TeacherProfile.objects.filter(teacher=request.user).exists()):
         return render(request, 'teacher/home.html')
