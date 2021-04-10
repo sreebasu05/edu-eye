@@ -1,0 +1,204 @@
+body {
+  background-color: #222831;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #29a19c;
+  margin-bottom: 25px;
+}
+
+h5 {
+  color: #222831;
+}
+
+h2 {
+  color: #29a19c;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.container-fluid {
+  padding: 1.5% 15%;
+  align-content: left;
+}
+
+#navigationbar {
+  background-color: #222831;
+  color: #29a19c;
+  /* color: #40514e */
+}
+
+.navbar-brand {
+  color: #29a19c;
+}
+
+.nav-link {
+  color: #29a19c;
+}
+
+.nav-link:hover {
+  opacity: 0.5;
+}
+
+#title {
+  background-color: #222831;
+  color: #29a19c;
+  padding: 15rem;
+  align-items: center;
+}
+
+.heading {
+  font-size: 4rem;
+  padding-top: 4rem;
+  text-align: center;
+}
+
+.titlepara {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.titlebutton {
+  align-items: center;
+  background-color: #29a19c;
+  color: #fff;
+  opacity: 1;
+  margin-top: 5%;
+
+}
+
+.titlebutton:hover {
+  align-items: center;
+  opacity: 0.6;
+}
+
+.wrapper {
+  text-align: center;
+}
+
+#features {
+  padding-top: 20px;
+  background-color: #29a19c;
+  color: #222831;
+}
+
+.featurette-heading, .lead {
+  color: #222831;
+}
+
+.feature-box {
+  text-align: center;
+  padding: 5%
+}
+
+#about-us {
+  background-color: #222831;
+  text-align: center;
+  color: #29a19c;
+  padding-top: 10px;
+}
+
+.carousel-item {
+  padding: 3% 15%;
+}
+
+#footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  background-color: #222831;
+  color: #29a19c;
+  text-align: center;
+  height: 20px;
+  padding: 3% 15% 3%;
+}
+
+.sidetitle {
+  background-color: #222831;
+  color: #29a19c;
+  align-items: center;
+}
+
+.subheading {
+
+  color: #29a19c;
+  font-size: 3.5rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  padding-right: 3rem;
+}
+
+.button {
+  background-color: #29a19c;
+  color: #222831;
+}
+
+.cd {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  background-color: #29a19c;
+  color: #222831;
+  width: 10rem;
+}
+
+.card-body {
+  background-color: #29a19c;
+}
+
+.list-group-item {
+  margin-bottom: 1rem;
+  background-color: #29a19c;
+  color: #222831;
+}
+
+.alert {
+  background-color: #29a19c;
+  font-size: 1rem;
+}
+
+.dashboardbutton {
+  align-items: center;
+  background-color: #29a19c;
+  color: #222831;
+  opacity: 1;
+  margin-right: 5px;
+}
+
+.dashboardbutton:hover {
+  opacity: 0.5;
+}
+
+.card-text {
+  color: #000;
+  margin-bottom: 3px;
+}
+
+.center-card {
+  background-color: #29a19c;
+  color: #222831;
+  /* text-align: center; */
+}
+
+.templatebutton {
+  background-color: #222831;
+  color: #29a19c;
+}
+
+.blockquote{
+  background-color: #fff;
+}
+
+.form {
+
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  padding-right: 3rem;
+}
+
+.row {
+  padding-left: 3rem;
+}
