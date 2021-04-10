@@ -8,5 +8,6 @@ urlpatterns = [
     path('profileform_teacher', views.CreateProfile, name="profileform_teacher"),
     path('dashboard_teacher', views.dash, name="dashboard_teacher"),
     path('unit_teacher/<int:bid>',views.unitdetail,name="unit_teacher"),
+    path('unit_complete_teacher/<int:bid>/<int:unitid>',views.isCompleteUint,name="unit_complete_teacher"),
 
 ]
