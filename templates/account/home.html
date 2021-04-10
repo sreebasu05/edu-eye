@@ -1,0 +1,25 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock head %}
+
+{% block body %}
+<section id="title">
+
+
+  <div class="container-fluid">
+    <h1 class="heading" style="font-family: 'Montserrat', cursive;">Welcome to your Edu-Eye</h1>
+    <p class="titlepara">
+      Hello {%if user.is_authenticated%}
+      {{user.username}},
+      {%else%}
+      mate,
+      {%endif%}
+      use Sea-Vs and make yourself a resume for your next interview. Let's get going!
+    </p>
+
+
+  </div>
+</section>
+{% endblock body%}

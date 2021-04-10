@@ -65,6 +65,8 @@ h2 {
 }
 
 .heading {
+  background-color: #7d0633;
+  color: #fbdcc4;
   font-size: 4rem;
   padding-top: 4rem;
   text-align: center;
@@ -233,4 +235,8 @@ h2 {
 
 .row {
   padding-left: 3rem;
+}
+
+.dropdown {
+  display: inline-block;
 }

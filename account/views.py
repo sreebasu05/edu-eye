@@ -19,7 +19,7 @@ from .models import User as Accounts
 
 # Create your views here.
 def index(request):
-    return render(request,'basic.html')
+    return render(request,'account/home.html')
 
 def Studentsignup(request):
     if request.method == 'POST':
