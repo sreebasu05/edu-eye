@@ -26,28 +26,24 @@ def TeachProfile(request):
 
 @login_required(login_url='login')
 def CreateProfile(request):
-    if request.user.is_teacher ==True:
-        if(TeacherProfile.objects.filter(teacher=request.user).exists()):
-            return render(request, 'teacher/home.html')
-        if request.method == 'POST':
-            fm = TeacherProfileForm(request.POST)
-            if fm.is_valid():
-                instance = fm.save(commit=False)
-                instance.teacher = request.user
-                print(instance.id)
-                # teacher_id=instance.id
-                instance.save()
-                messages.success(request, 'Your profile has been created')
-                return render(request,'teacher/profileform.html')
-                # return render(request,'teacher/home.html')
-            else:
-                messages.error(request, 'Please enter valid details')
-                return render(request,'teacher/home.html')
+    if(TeacherProfile.objects.filter(teacher=request.user).exists()):
+        Teacher = get_object_or_404(TeacherProfile, teacher_id=request.user.id)
+        return render(request, 'teacher/profile.html',{'Teacher':Teacher})
+    if request.method == 'POST':
+        fm = TeacherProfileForm(request.POST)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.teacher = request.user
+            print(instance.id)
+            # teacher_id=instance.id
+            instance.save()
+            Teacher = get_object_or_404(TeacherProfile, teacher_id=request.user.id)
+            messages.success(request, 'Your profile has been created')
+            return render(request,'teacher/profile.html',{'Teacher':Teacher})
+            # return render(request,'teacher/home.html')
         else:
-            fm=TeacherProfileForm()
-            print("hello")
+            messages.error(request, 'Please enter valid details')
             return render(request,'teacher/profileform.html',{'form':fm})
-
     else:
         print("NOT A Teacher!! login as teacher :P")
         return redirect('login')
@@ -95,8 +91,10 @@ def isCompleteUint(request, bid, unitid):
             batchdetail.lecture_taken = lecture
             print(batchdetail)
             batchdetail.save()
-
-            return render(request,'teacher/home.html')
+            uid = request.user.id
+            Teacher = get_object_or_404(TeacherProfile, teacher_id=uid)
+            Teaches = TeacherBatchCourse.objects.filter(teacher_details=Teacher)
+            return render(request,'teacher/dashboard.html',{'Teaches':Teaches})
         else:
             print("hello")
             return render(request,'teacher/unitform.html',{'bid':bid,'unitid':unitid})

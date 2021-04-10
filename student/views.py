@@ -8,6 +8,35 @@ from account.models import *
 
 @login_required(login_url='login')
 def home_student(request):
+<<<<<<< HEAD
+    return render(request, 'student/home.html')
+
+def student_profile(request):
+    if(StudentProfile.objects.filter(student=request.user).exists()):
+        student = student = StudentProfile.objects.get(student=User.object.get(id=request.user.id))
+        context = {
+         'student': student
+        }
+        return render(request, 'student/profile.html', context)
+    else:
+        if request.method == 'POST':
+            fm = StudentProfileForm(request.POST)
+            if fm.is_valid():
+                instance = fm.save(commit=False)
+                instance.student = request.user
+                print(instance.id)
+                instance.save()
+                messages.success(request, 'Your profile has been created')
+                student = student = StudentProfile.objects.get(student=User.object.get(id=request.user.id))
+                context = {
+                'student': student
+                    }
+
+                return render(request, 'student/profile.html', context)
+            else:
+                messages.error(request, 'Please enter valid details')
+                return render(request,'student/profile-form.html',{'form':fm})
+=======
     if request.user.is_student == True :
         return render(request, 'student/home.html')
     else:
@@ -19,6 +48,7 @@ def student_profile(request):
     if request.user.is_student == True :
         if(StudentProfile.objects.filter(student=request.user).exists()):
             return render(request, 'student/home.html')
+>>>>>>> ad74c1aa73d5c103db8e8f98bf02c640500cc122
         else:
             if request.method == 'POST':
                 fm = StudentProfileForm(request.POST)
@@ -101,6 +131,35 @@ def giveRating(request,bid):
 
         track = TrackProgressBatchCourse.objects.get(pk=bid)
 
+<<<<<<< HEAD
+def giveRating(request,bid):
+    track = TrackProgressBatchCourse.objects.get(pk=bid)
+
+    print(track.batchcourse)
+
+    if request.method == 'POST':
+        rating = request.POST['rating']
+        
+        print(rating)
+        
+        track.rating = track.rating + int(rating)
+        track.students_polled =track.students_polled+1
+        track.save()
+        uid = request.user.id
+        print(request.user.email)
+        student = StudentProfile.objects.get(student=User.object.get(id=uid))
+        print(student.first_name)
+        courses = BatchCourse.objects.filter(batch=student.student_batch)
+        context = {
+         'courses': courses,
+         'student':student,
+        }
+        return render(request, 'student/student_dash.html', context)
+
+    else:
+        print("hello")
+        return render(request,'student/unit.html',{'bid':bid})
+=======
         print(track.batchcourse)
 
         if request.method == 'POST':
@@ -116,6 +175,7 @@ def giveRating(request,bid):
         else:
             print("hello")
             return render(request,'student/unit.html',{'bid':bid})
+>>>>>>> ad74c1aa73d5c103db8e8f98bf02c640500cc122
 
     else:
         print("NOT AUTHORIZED!!")
