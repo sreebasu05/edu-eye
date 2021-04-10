@@ -52,4 +52,23 @@ def unitdetail(request, bid):
     # print(batchdetail.batchcourse)
     # print(batchdetail)
 
-    return render(request,'teacher/unitdash.html',{'batchdetails':batchdetail})
+    return render(request, 'teacher/unitdash.html', {'batchdetails': batchdetail,'bid':bid})
+    
+def isCompleteUint(request, bid, unitid):
+    batchdetail = TrackProgressBatchCourse.objects.get(batchcourse_id=bid,unit_id=unitid)
+    if request.method == 'POST':
+        comp = request.POST['comp']
+        lecture = request.POST['lecture']
+        print(comp)
+        print(lecture)
+        if comp == "Completed":
+            batchdetail.is_completed = True
+
+        batchdetail.lecture_taken = lecture
+        print(batchdetail)
+        batchdetail.save()
+            
+        return render(request,'teacher/home.html')
+    else:
+        print("hello")
+        return render(request,'teacher/unitform.html',{'bid':bid,'unitid':unitid})

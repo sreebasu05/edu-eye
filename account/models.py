@@ -190,9 +190,10 @@ class TrackProgressBatchCourse(models.Model):
     batchcourse = models.ForeignKey(BatchCourse, on_delete=models.CASCADE,null=True)
     start_date = models.DateField(null=True)
     end_date = models.DateField(null=True)
+    is_completed = models.BooleanField(default=False)
+    rating = models.IntegerField(default=0)
+    students_polled = models.IntegerField(default=0)
+    lecture_taken=models.IntegerField(default=0)
 
     class Meta:
         unique_together = ('unit', 'batchcourse')
-
-    def __str__(self):
-        return   str(self.unit.name) +" - "+ str(self.batchcourse.batch.in_class)+self.batchcourse.batch.section+" - "+str(self.batchcourse.course.name)

@@ -1,0 +1,14 @@
+
+<form method="POST" action="{%url 'unit_complete_teacher' bid unitid%}">
+    {% csrf_token %}
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" name="comp" type="checkbox" id="inlineCheckbox1" value="Completed">
+        <label class="form-check-label" for="inlineCheckbox1">Completed</label>
+      </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Lectures</label>
+      <input type="number" class="form-control" name="lecture" id="exampleInputPassword1" placeholder="No. of lectures">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+

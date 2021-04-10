@@ -22,7 +22,9 @@
             
             <td>{{batchdetail.unit.unit_no}}</td>
             <td>{{batchdetail.unit.name}}</td>
-            <td>Left</td>
+
+            <td><a href="{% url 'unit_complete_teacher' bid batchdetail.unit_id %}">unit comlpete</a></td>
+         
           </tr>
           {% endfor%}
         </tbody>
