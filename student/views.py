@@ -10,12 +10,6 @@ from account.models import *
 def home_student(request):
     return render(request, 'student/home.html')
 
-def StudProfile(request):
-    currUser = request.user.email
-    student = get_object_or_404(StudentProfile, student_id=request.user.id)
-    return render(request, 'student/profile.html',{'Student':student})
-
-
 def student_profile(request):
     mail = request.user.email
     print(mail)
@@ -58,7 +52,7 @@ def dash(request):
     courses = BatchCourse.objects.filter(batch=student.student_batch)
     context = {
         'courses': courses,
-        'name':student.first_name,
+        'student':student,
     }
     return render(request, 'student/student_dash.html', context)
 
@@ -73,5 +67,6 @@ def profile(request):
 
 def units(request, bid):
     batches = TrackProgressBatchCourse.objects.filter(batchcourse_id=bid)
+    b = BatchCourse.objects.get(pk=bid)
     print(bid)
-    return render(request, 'student/unit.html', {'batches': batches})
+    return render(request, 'student/unit.html', {'batches': batches, 'batch':b})
