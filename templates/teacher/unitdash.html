@@ -13,6 +13,9 @@
             <td scope="col">Unit No</td>
             <td scope="col">Unit Name</td>
             <td scope="col">Status</td>
+            <td scope="col">Rating</td>
+            <td scope="col">Lecture Taken</td>
+            <td scope="col">Add status</td>
           </tr>
         </thead>
         <tbody>
@@ -22,8 +25,16 @@
 
             <td>{{batchdetail.unit.unit_no}}</td>
             <td>{{batchdetail.unit.name}}</td>
-            <td><a href="{% url 'unit_complete_teacher' bid batchdetail.unit_id %}">unit comlpete</a></td>
-          
+            <td>{{batchdetail.is_completed}}</td>
+            {% if batchdetail.is_completed %}
+            <td>{{batchdetail.rating}}</td>
+            <td>{{batchdetail.lecture_taken}}</td>
+            <td>Submitted</td>
+            {% else %}
+            <td>Unrated</td>
+            <td>0</td>
+            <td><a href="{% url 'unit_complete_teacher' bid batchdetail.unit_id %}">comlpete unit </a></td>
+            {% endif %}
          
           </tr>
           {% endfor%}

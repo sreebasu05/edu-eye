@@ -1,14 +1,22 @@
-
+{% extends 'basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
 <form method="POST" action="{%url 'unit_complete_teacher' bid unitid%}">
     {% csrf_token %}
-    <div class="form-check form-check-inline">
+    <div class="form-group container">
+    <div class="form-check form-check-inline container">
         <input class="form-check-input" name="comp" type="checkbox" id="inlineCheckbox1" value="Completed">
         <label class="form-check-label" for="inlineCheckbox1">Completed</label>
       </div>
-    <div class="form-group">
+      </div>
+    <div class="form-group container">
       <label for="exampleInputPassword1">Lectures</label>
       <input type="number" class="form-control" name="lecture" id="exampleInputPassword1" placeholder="No. of lectures">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="container">
+    <button type="submit" class="btn btn-primary " >Submit</button>
+    </div>
   </form>
 
+  {% endblock body %}

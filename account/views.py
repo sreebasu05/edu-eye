@@ -43,7 +43,7 @@ def Studentsignup(request):
             user = Accounts.object.create_user(email=email, password = password)
             user.is_student=True
 
-            user.is_active=False
+            user.is_active=True
             user.save()
             current_site=get_current_site(request)
             email_subject='Activate your account',

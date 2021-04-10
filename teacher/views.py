@@ -87,7 +87,6 @@ def isCompleteUint(request, bid, unitid):
             print(lecture)
             if comp == "Completed":
                 batchdetail.is_completed = True
-
             batchdetail.lecture_taken = lecture
             print(batchdetail)
             batchdetail.save()
