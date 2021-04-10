@@ -1,0 +1,23 @@
+{% extends 'basic.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container sidetitle">
+
+  <h1 class="subheading">Add course</h1>
+
+
+
+  <form method="POST">
+    {% csrf_token  %}
+    <div class="row">
+      {{ form.class_no  }}
+    </div>
+    <div class="row">
+      {{ form.name  }}
+    </div>
+
+    <button type="submit" class="titlebutton btn btn-md">Save</button>
+  </form>
+</div>
+
+{% endblock content %}

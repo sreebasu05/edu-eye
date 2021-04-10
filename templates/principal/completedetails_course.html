@@ -1,0 +1,46 @@
+{% extends 'principal/base.html' %}
+
+{% block head %}
+
+
+{% endblock head %}
+{% block body %}
+{% if units %}
+<body>
+
+    <h1>Course Code ::{{ course.code}}</h1>
+    <h1>Course Name ::{{ course.name}}</h1>
+    <hr>
+
+    <table>
+        <tr id="header">
+            <th scope="col">S.No</th>
+        <th scope="col">Unit Name</th>
+        </tr>
+        {%  for c in units %}
+
+
+
+
+      <tr>
+
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ c.name }}</td>
+    
+        
+
+
+      </tr>
+      {% endfor %}
+
+      {% else %}
+
+      <h6 style="margin-top: 100px;color: #c9302c"> No units present!!! </h6>
+
+      {% endif %}
+
+    </table>
+
+</body>
+
+{% endblock body %}
