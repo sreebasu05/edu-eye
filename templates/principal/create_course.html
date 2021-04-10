@@ -8,12 +8,12 @@
 
 
   <form method="POST">
-    {% csrf_token |as_crispy_field %}
+    {% csrf_token  %}
     <div class="row">
-      {{ form.code |as_crispy_field }}
+      {{ form.class_no  }}
     </div>
     <div class="row">
-      {{ form.name |as_crispy_field }}
+      {{ form.name  }}
     </div>
 
     <button type="submit" class="titlebutton btn btn-md">Save</button>
