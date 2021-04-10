@@ -18,7 +18,8 @@ def TeachProfile(request):
 
 def CreateProfile(request):
     if(TeacherProfile.objects.filter(teacher=request.user).exists()):
-        return render(request, 'teacher/home.html')
+        Teacher = get_object_or_404(TeacherProfile, teacher_id=request.user.id)
+        return render(request, 'teacher/profile.html',{'Teacher':Teacher}) 
     if request.method == 'POST':
         fm = TeacherProfileForm(request.POST)
         if fm.is_valid():
@@ -27,12 +28,13 @@ def CreateProfile(request):
             print(instance.id)
             # teacher_id=instance.id
             instance.save()
+            Teacher = get_object_or_404(TeacherProfile, teacher_id=request.user.id)
             messages.success(request, 'Your profile has been created')
-            return render(request,'teacher/profileform.html')
+            return render(request,'teacher/profile.html',{'Teacher':Teacher})
             # return render(request,'teacher/home.html')
         else:
             messages.error(request, 'Please enter valid details')
-            return render(request,'teacher/home.html')
+            return render(request,'teacher/profileform.html',{'form':fm})
     else:
         fm=TeacherProfileForm()
         print("hello")
@@ -67,8 +69,8 @@ def isCompleteUint(request, bid, unitid):
         batchdetail.lecture_taken = lecture
         print(batchdetail)
         batchdetail.save()
-            
-        return render(request,'teacher/home.html')
+        batchdet = TrackProgressBatchCourse.objects.filter(batchcourse_id=bid)
+        return render(request, 'teacher/unitdash.html', {'batchdetails': batchdet,'bid':bid})
     else:
         print("hello")
         return render(request,'teacher/unitform.html',{'bid':bid,'unitid':unitid})

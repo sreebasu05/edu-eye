@@ -12,7 +12,11 @@ def home_student(request):
 
 def student_profile(request):
     if(StudentProfile.objects.filter(student=request.user).exists()):
-        return render(request, 'student/home.html')
+        student = student = StudentProfile.objects.get(student=User.object.get(id=request.user.id))
+        context = {
+         'student': student
+        }
+        return render(request, 'student/profile.html', context)
     else:
         if request.method == 'POST':
             fm = StudentProfileForm(request.POST)
@@ -20,23 +24,17 @@ def student_profile(request):
                 instance = fm.save(commit=False)
                 instance.student = request.user
                 print(instance.id)
-                # teacher_id=instance.id                #num = Batch.objects.filter(in_class=request.POST.get('class'), section=request.POST.get('section')).count()
-
-                # if(num == 0)
-                #     Batch.objects.create(                #         in_class=request.POST.get('class'),
-            #         section=request.POST.get('section')
-                #     ).save()
-                #
-                # instance.batch = Batch.objects.get(in_class=request.POST.get('class'), section=request.POST.get('section'))
-
-
                 instance.save()
                 messages.success(request, 'Your profile has been created')
-                return render(request,'student/home.html')
-                    # return render(request,'teacher/home.html')
+                student = student = StudentProfile.objects.get(student=User.object.get(id=request.user.id))
+                context = {
+                'student': student
+                    }
+
+                return render(request, 'student/profile.html', context)
             else:
                 messages.error(request, 'Please enter valid details')
-                return render(request,'student/profile-form.html')
+                return render(request,'student/profile-form.html',{'form':fm})
         else:
             fm=StudentProfileForm()
             print("hello")
@@ -84,8 +82,17 @@ def giveRating(request,bid):
         track.rating = track.rating + int(rating)
         track.students_polled =track.students_polled+1
         track.save()
-            
-        return render(request,'student/home.html')
+        uid = request.user.id
+        print(request.user.email)
+        student = StudentProfile.objects.get(student=User.object.get(id=uid))
+        print(student.first_name)
+        courses = BatchCourse.objects.filter(batch=student.student_batch)
+        context = {
+         'courses': courses,
+         'student':student,
+        }
+        return render(request, 'student/student_dash.html', context)
+
     else:
         print("hello")
         return render(request,'student/unit.html',{'bid':bid})

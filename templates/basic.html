@@ -21,6 +21,44 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+        {%if user.is_principal %}
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'profile_teacher'%}">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'view_course'%}">Course Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'coursebatchdetails'%}">Batch Details</a>
+        </li>
+        <li class="nav-item">
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'add_course'%}">Add course/unit</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Log out</a>
+        </li>
+        {% elif user.is_teacher%}
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'profile_teacher'%}">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'dashboard_teacher'%}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Log out</a>
+        </li>
+        {% elif user.is_student %}
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'profile_student'%}">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'StudentDash'%}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Logout</a>
+        </li>
+        {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{%url 'index'%}">Home</a>
         </li>
@@ -33,6 +71,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{%url 'login'%}">Login</a>
         </li>
+        {% endif %}
       </ul>
     </div>
   </nav>
