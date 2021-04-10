@@ -29,7 +29,9 @@ def add_course(request):
         return render(request,'principal/create_course.html',{'form':fm})
 
 def view_courses(request):
-    courses = Course.objects.all()
+    teacher_profile = TeacherProfile.objects.get(teacher= request.user)
+    print(teacher_profile.department)
+    courses = Course.objects.filter(name= teacher_profile.department)
     print(courses)
     context ={'courses' : courses}
     return render(request,'principal/viewcourses.html',context)
@@ -43,11 +45,14 @@ def completedetails_course(request,id):
     return render(request,'principal/completedetails_course.html',context)
 
 
-def add_unit(request):
+def add_unit(request, id):
+    c = Course.objects.get(pk=id)
     if request.method == 'POST':
         fm = UnitForm(request.POST)
         if fm.is_valid():
+
             instance = fm.save(commit=False)
+            instance.course = c
             instance.save()
             return render(request,'principal/home.html')
         # return render(request,'teacher/home.html')
