@@ -90,9 +90,7 @@ class Course(models.Model):
                   ("HINDI", "Hindi"), ("SCI", "Science"))
 
     name = models.TextField(default=1,choices=SUBJECT)
-    class_no = models.IntegerField()
-    class Meta:
-        unique_together = ('name', 'class_no')
+    class_no = models.IntegerField(unique=True)
 
     def __str__(self):
         return str(self.name) +"_"+str(self.class_no)
@@ -191,8 +189,7 @@ class Unit(models.Model):
 class TrackProgressBatchCourse(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, null=True)
     batchcourse = models.ForeignKey(BatchCourse, on_delete=models.CASCADE,null=True)
-    start_date = models.DateField(null=True)
-    end_date = models.DateField(null=True)
+    
     is_completed = models.BooleanField(default=False)
     rating = models.IntegerField(default=0)
     students_polled = models.IntegerField(default=0)
@@ -200,3 +197,5 @@ class TrackProgressBatchCourse(models.Model):
 
     class Meta:
         unique_together = ('unit', 'batchcourse')
+    def __str__(self):
+        return str(self.unit)+ " - " + str(self.batchcourse)

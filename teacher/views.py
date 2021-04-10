@@ -79,7 +79,7 @@ def unitdetail(request, bid):
         print("NOT A Teacher!! login as teacher :P")
         return redirect('login')
 
-        
+
 @login_required(login_url='login')
 def isCompleteUint(request, bid, unitid):
     if request.user.is_teacher ==True:
@@ -95,7 +95,7 @@ def isCompleteUint(request, bid, unitid):
             batchdetail.lecture_taken = lecture
             print(batchdetail)
             batchdetail.save()
-                
+
             return render(request,'teacher/home.html')
         else:
             print("hello")
@@ -103,3 +103,32 @@ def isCompleteUint(request, bid, unitid):
     else:
         print("NOT A Teacher!! login as teacher :P")
         return redirect('login')
+
+# def unit_progress(request):
+#     teacher = TeacherProfile.objects.get(teacher=request.user)
+#     query_set = TeacherBatchCourse.objects.filter(teacher_details=teacher)
+#     print(query_set)
+#
+#     for q in query_set:
+#         i = TrackProgressBatchCourse.objects.filter(batchcourse=q.batchcourse)
+#         print(i)
+#     return render(request, 'teacher/home.html')
+
+
+
+
+def pie_chart(request):
+    labels = [2,3,4]
+    data = [2,3,4]
+    teacher = TeacherProfile.objects.get(teacher=request.user)
+    query_set = TeacherBatchCourse.objects.filter(teacher_details=teacher)
+    print(query_set)
+
+    for q in query_set:
+        i = TrackProgressBatchCourse.objects.filter(batchcourse=q.batchcourse)
+        print(i)
+
+    return render(request, 'teacher/pie_chart.html', {
+        'labels': labels,
+        'data': data,
+    })
