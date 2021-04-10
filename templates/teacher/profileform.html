@@ -1,46 +1,55 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="container">
 
-{% block content %}
-<div class="container-fluid sidetitle">
+
   <div class="row">
     <div class="col-6 border-right">
-      <h1 class="subheading">Add your Personal Details</h1>
+      <h1 class="subheading">Create your Profile</h1>
     </div>
-    <div class="col-6">
-
-
+    <div class="col-6 form">
       <form method="POST">
         {% csrf_token %}
+        <h5 class="row">First Name</h5>
         <div class="row">
-          <div class="col-6">
-            {{ form.gender }}
-          </div>
-           </div>
+          <br>
+          {{ form.first_name }}
+        </div>
+        <h5 class="row">Last Name</h5>
         <div class="row">
-          <div class="col-7">
-            {{ form.first_name }}
-          </div>
-          <div class="col-5">
-            {{ form.last_name}}
-          </div>
+
+          {{ form.last_name}}
+        </div>
+        <h5 class="row">Gender</h5>
+        <div class="row">
+
+          {{ form.gender }}
+        </div>
+        <h5 class="row">Department</h5>
+        <div class="row">
+
+          {{ form.department }}
+        </div class="row">
+        <h5 class="row">Phone No.</h5>
+        <div class="row">
+
+          {{ form.phone}}
+        </div>
+        <h5 class="row">Date of Birth</h5>
+        <div class="row">
+
+          {{ form.dob}}
         </div>
 
-        <div class="row">
-          <div class="col-5">
-            {{ form.department }}
-          </div>
-          <div class="col-4">
-            {{ form.phone }}
-          </div>
-          <div class="col-3">
-            {{ form.dob }}
-          </div>
-        </div>
 
-        <button type="submit" class="titlebutton btn btn-md">Save</button>
+
+        <div class="row">
+          <button type="submit" class="titlebutton btn btn-md">Save</button>
+        </div>
       </form>
     </div>
   </div>
-  </div>
-  {% endblock content %}
-
-
+</div>
+{% endblock body %}

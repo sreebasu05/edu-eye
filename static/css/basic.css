@@ -1,10 +1,10 @@
 body {
-  background-color: #222831;
+
   margin-bottom: 20px;
 }
 
 p {
-  color: #29a19c;
+  color: #89beb3;
   margin-bottom: 25px;
 }
 
@@ -13,30 +13,34 @@ h5 {
 }
 
 h2 {
-  color: #29a19c;
+  color: #89beb3;
 }
 
 .spacer {
   flex: 1;
 }
 
-.container-fluid {
-  padding: 1.5% 15%;
-  align-content: left;
+.container {
+  background-color: #fff;
+  color: #89beb3;
 }
-
+.tablehead{
+  background-color: #fff !important;
+  color: #89beb3 !important;
+  font-weight: bold;
+}
 #navigationbar {
   background-color: #222831;
-  color: #29a19c;
+  color: #fff;
   /* color: #40514e */
 }
 
 .navbar-brand {
-  color: #29a19c;
+  color: #89beb3;
 }
 
 .nav-link {
-  color: #29a19c;
+  color: #89beb3;
 }
 
 .nav-link:hover {
@@ -45,7 +49,7 @@ h2 {
 
 #title {
   background-color: #222831;
-  color: #29a19c;
+  color: #89beb3;
   padding: 15rem;
   align-items: center;
 }
@@ -63,13 +67,16 @@ h2 {
 
 .titlebutton {
   align-items: center;
-  background-color: #29a19c;
+  background-color: #89beb3;
   color: #fff;
   opacity: 1;
   margin-top: 5%;
 
 }
-
+.btn {
+  background-color: #89beb3;
+  color: #fff;
+}
 .titlebutton:hover {
   align-items: center;
   opacity: 0.6;
@@ -81,7 +88,7 @@ h2 {
 
 #features {
   padding-top: 20px;
-  background-color: #29a19c;
+  background-color: #89beb3;
   color: #222831;
 }
 
@@ -97,7 +104,7 @@ h2 {
 #about-us {
   background-color: #222831;
   text-align: center;
-  color: #29a19c;
+  color: #89beb3;
   padding-top: 10px;
 }
 
@@ -110,7 +117,7 @@ h2 {
   width: 100%;
   bottom: 0px;
   background-color: #222831;
-  color: #29a19c;
+  color: #89beb3;
   text-align: center;
   height: 20px;
   padding: 3% 15% 3%;
@@ -118,13 +125,13 @@ h2 {
 
 .sidetitle {
   background-color: #222831;
-  color: #29a19c;
+  color: #89beb3;
   align-items: center;
 }
 
 .subheading {
 
-  color: #29a19c;
+  color: #89beb3;
   font-size: 3.5rem;
   padding-top: 10rem;
   padding-bottom: 10rem;
@@ -132,7 +139,7 @@ h2 {
 }
 
 .button {
-  background-color: #29a19c;
+  background-color: #89beb3;
   color: #222831;
 }
 
@@ -140,29 +147,29 @@ h2 {
   margin-left: 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  background-color: #29a19c;
+  background-color: #89beb3;
   color: #222831;
   width: 10rem;
 }
 
 .card-body {
-  background-color: #29a19c;
+  background-color: #89beb3;
 }
 
 .list-group-item {
   margin-bottom: 1rem;
-  background-color: #29a19c;
+  background-color: #89beb3;
   color: #222831;
 }
 
 .alert {
-  background-color: #29a19c;
+  background-color: #89beb3;
   font-size: 1rem;
 }
 
 .dashboardbutton {
   align-items: center;
-  background-color: #29a19c;
+  background-color: #89beb3;
   color: #222831;
   opacity: 1;
   margin-right: 5px;
@@ -178,14 +185,14 @@ h2 {
 }
 
 .center-card {
-  background-color: #29a19c;
+  background-color: #89beb3;
   color: #222831;
   /* text-align: center; */
 }
 
 .templatebutton {
   background-color: #222831;
-  color: #29a19c;
+  color: #89beb3;
 }
 
 .blockquote{

@@ -1,46 +1,39 @@
-{% extends 'principal/base.html' %}
-
-{% block head %}
-
-
-{% endblock head %}
+{% extends 'basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 {% block body %}
 {% if units %}
-<body>
+<div class="container">
+  <h1 class="title"> {{ course.name}} {{ course.class_no}}</h1>
+  <hr>
 
-    <h1>Course Code ::{{ course.code}}</h1>
-    <h1>Course Name ::{{ course.name}}</h1>
-    <hr>
-
-    <table>
-        <tr id="header">
-            <th scope="col">S.No</th>
-        <th scope="col">Unit Name</th>
-        </tr>
-        {%  for c in units %}
-
-
-
+  <table class="table">
+    <thead class="table-dark">
+      <th scope="col">S.No</th>
+      <th scope="col">Unit Name</th>
+    </thead>
+    <tbody>
+      {%  for c in units %}
 
       <tr>
 
         <th scope="row">{{ forloop.counter }}</th>
         <td>{{ c.name }}</td>
-    
-        
+
+
 
 
       </tr>
       {% endfor %}
+    </tbody>
 
-      {% else %}
 
-      <h6 style="margin-top: 100px;color: #c9302c"> No units present!!! </h6>
+    {% else %}
 
-      {% endif %}
+    <h6 style="margin-top: 100px;color: #c9302c"> No units present!!! </h6>
 
-    </table>
+    {% endif %}
 
-</body>
-
-{% endblock body %}
+  </table>
+</div>
+  {% endblock body %}

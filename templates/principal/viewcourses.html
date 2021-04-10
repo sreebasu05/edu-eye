@@ -1,56 +1,57 @@
-{% extends 'principal/base.html' %}
-
-{% block head %}
-
-
-{% endblock head %}
+{% extends 'basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 {% block body %}
 {% if courses %}
 <body>
 
-    <h1>Courses</h1>
-    <hr>
 
-    <table>
-        <tr id="header">
-            <th scope="col">S.No</th>
-        <th scope="col">Course Code</th>
-        <th scope="col">Course Name</th>
-        <th scope="col">Actions</th>
-        <th scope="col">Add Unit</th>
-        </tr>
-        {%  for c in courses %}
-
-
-
-
+<div class="container">
+  <h1 class="title">Courses</h1>
+  <hr>
+  <table class="table">
+    <thead class="table-dark">
+      <th scope="col">S.No</th>
+      <th scope="col">Course Code</th>
+      <th scope="col">Course Name</th>
+      <th scope="col">Actions</th>
+      <th scope="col">Add Unit</th>
+    </thead>
+    <tbody>
+      {%  for c in courses %}
       <tr>
 
         <th scope="row">{{ forloop.counter }}</th>
         <td>{{ c.class_no }}</td>
         <td>{{ c.name }}</td>
         <td>
-         
-        <a href="{%url 'completedetails_course' c.id %}" class="btn btn-info text-white">View</a>
+
+          <a href="{%url 'completedetails_course' c.id %}" class="btn">View</a>
         </td>
         <td>
-         
-        <a href="{%url 'add_unit' c.id %}" class="btn btn-info text-white">Add Unit</a>
+
+          <a href="{%url 'add_unit' c.id %}" class="btn ">Add Unit</a>
         </td>
-        
+
 
 
       </tr>
       {% endfor %}
+    </tbody>
+  </table>
+  <table>
 
-      {% else %}
 
-      <h6 style="margin-top: 100px;color: #c9302c"> No courses present!!! </h6>
 
-      {% endif %}
+    {% else %}
 
-    </table>
+    <h6 style="margin-top: 100px;color: #c9302c"> No courses present!!! </h6>
 
-</body>
+    {% endif %}
+
+  </table>
+</div>
+
+
 
 {% endblock body %}

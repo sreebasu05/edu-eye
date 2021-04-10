@@ -1,4 +1,38 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="container">
+  <div class="card mb-3 mt-3">
+    <div class="card-body" style="background-color:#fff">
+      <h1 class="card-title">{{Teacher.first_name}} {{Teacher.last_name}}</h1>
+      <h6 class="card-subtitle mb-2 text-muted">{{Teacher.get_department_display}} Department</h6>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>Gender:</td>
+            <td>{{Teacher.get_gender_display}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Email Id:</td>
+            <td>{{Teacher.teacher.email}}</td>
+          </tr>
+          <tr>
+            <td>Phone No.:</td>
+            <td>{{Teacher.phone}}</td>
+          </tr>
+          <tr>
+            <td>Date of Birth: </td>
+            <td>{{Teacher.dob}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
+  </div>
+</div>
 
-<h1>welcome to your profile</h1>
-{{Teacher.first_name}} {{Teacher.last_name}}
+{% endblock body %}

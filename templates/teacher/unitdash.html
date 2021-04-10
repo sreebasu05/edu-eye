@@ -1,12 +1,38 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="container">
+  <div class="card mb-3 mt-3">
+    <div class="card-body" style="background-color:#fff">
+      <h1 class="title">Batches</h1>
+      <table class="table table-borderless">
+        <thead>
+          <tr class="tablehead">
+            <td scope="col">S.No.</td>
+            <td scope="col">Unit No</td>
+            <td scope="col">Unit Name</td>
+            <td scope="col">Status</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for batchdetail in batchdetails%}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+
+            <td>{{batchdetail.unit.unit_no}}</td>
+            <td>{{batchdetail.unit.name}}</td>
+            <td>Left</td>
+          </tr>
+          {% endfor%}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+{% endblock body %}
 <table class="table">
-    {% for batchdetail in batchdetails%}
-    <thead>
-      <tr>
-        <th scope="col">{{batchdetail.unit.unit_no}}</th>
-      </tr>
-      <tr>
-        <th scope="col">{{batchdetail.unit.name}}</th>
-      </tr>
-    </thead>
-    {% endfor%}
-  </table>
+
+</table>
