@@ -195,8 +195,7 @@ class TrackProgressBatchCourse(models.Model):
         unique_together = ('unit', 'batchcourse')
 
     def __str__(self):
-<<<<<<< HEAD
+
         return   str(self.unit.name) +" - "+ str(self.batchcourse.batch.in_class)+self.batchcourse.batch.section+" - "+str(self.batchcourse.course.name)
-=======
-        return   str(self.unit.name)
->>>>>>> ac66c02132daeefb48b0aed67dd47ce8bdd36e94
+
+        
