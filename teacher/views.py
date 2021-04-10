@@ -69,8 +69,9 @@ def unitdetail(request, bid):
             rating = []
             for bd in batchdetail:
                 if bd.is_completed==True:
-                    x=bd.rating/bd.students_polled
-                    rating
+                    if bd.students_polled!=0:
+                        x=bd.rating/bd.students_polled
+                        rating.append(x)
             # print(batchdetail.unit.unit_no)
             # print(batchdetail.batchcourse)
             # print(batchdetail)

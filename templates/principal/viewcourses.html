@@ -3,55 +3,44 @@
 {% load crispy_forms_tags %}
 {% block body %}
 {% if courses %}
-<body>
-
-
 <div class="container">
-  <h1 class="title">Courses</h1>
-  <hr>
-  <table class="table">
-    <thead class="table table-borderless">
-      <th scope="col">S.No</th>
-      <th scope="col">Course Code</th>
-      <th scope="col">Course Name</th>
-      <th scope="col">Actions</th>
-      <th scope="col">Add Unit</th>
-    </thead>
-    <tbody>
-      {%  for c in courses %}
-      <tr>
-
-        <th scope="row">{{ forloop.counter }}</th>
-        <td>{{ c.class_no }}</td>
-        <td>{{ c.name }}</td>
-        <td>
-
-          <a href="{%url 'completedetails_course' c.id %}" class="btn">View</a>
-        </td>
-        <td>
-
-          <a href="{%url 'add_unit' c.id %}" class="btn ">Add Unit</a>
-        </td>
-
-
-
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <table>
-
-
-
-    {% else %}
-
-    <h6 style="margin-top: 100px;color: #c9302c"> No courses present!!! </h6>
-
-    {% endif %}
-
-  </table>
+  <div class="card bg-light mb-3 mt-3">
+    <div class="card-body" style="background-color:#fff">
+      <h1 class="title">Courses</h1>
+      <hr>
+      <table class="table table-borderless">
+        <thead>
+          <tr class="tablehead">
+            <th scope="col">S.No</th>
+            <th scope="col">Course Code</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Actions</th>
+            <th scope="col">Add Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%  for c in courses %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ c.class_no }}</td>
+            <td>{{ c.name }}</td>
+            <td>
+              <a href="{%url 'completedetails_course' c.id %}" class="btn">View</a>
+            </td>
+            <td>
+              <a href="{%url 'add_unit' c.id %}" class="btn ">Add Unit</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <table>
+        {% else %}
+        <h6 style="margin-top: 100px;color: #c9302c"> No courses present!!! </h6>
+        {% endif %}
+      </table>
+    </div>
+  </div>
 </div>
-
-
 
 {% endblock body %}

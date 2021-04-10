@@ -5,62 +5,63 @@
 {% endblock head %}
 
 {% block body %}
+<section class="formtwo">
+	<div class="container">
+		<div class="row">
+			<div class="col-6 border-right">
+				<h1 class="subheading">Log In</h1>
+			</div>
+			<div class="col-6 form">
+				<form method="POST" action="/login">
+					{% csrf_token %}
 
-<div class="container">
-	<div class="row">
-		<div class="col-6 border-right">
-			<h1 class="subheading">Log In</h1>
-		</div>
-		<div class="col-6 form">
-			<form method="POST" action="/login">
-				{% csrf_token %}
+					<h5 class="row">Username :</h5>
+					<div class="row">
+						<input type="email" class="form-control" name="email" placeholder="millie.brown@gmail.com" >
+					</div>
 
-				<h5 class="row">Username</h5>
-				<div class="row">
-					<input type="email" name="email" class="input">
-				</div>
-
-				<h5 class="row">Password</h5>
-				<div class="row">
-					<input type="password" name="password" class="input">
-				</div>
-				<br>
-				<a class="row" href="{%url 'request-reset-email'%}">Forgot Password?</a>
-				<div class="row">
-					<input type="submit" class="btn formbtn" value="Login">
-				</div>
-				<br>
-
+					<h5 class="row">Password :</h5>
+					<div class="row">
+						<input type="password" class="form-control" name="password" placeholder="Password" >
+					</div>
+					<br>
+					<div class="row">
+						<input type="submit" class="btn formbtn" value="Login">
+					</div>
+					<br>
+					<a class="row" href="{%url 'request-reset-email'%}">Forgot Password?</a>
 					<a href="#" class="row">Don't have an account?Signup</a>
 
 
-			</form>
+				</form>
+			</div>
 		</div>
-	</div>
 
-	{% endblock body %}
+</section>
 
-	{% block script %}
-	<script>
-		const inputs = document.querySelectorAll(".input");
+{% endblock body %}
+
+{% block script %}
+<script>
+	const inputs = document.querySelectorAll(".input");
 
 
-		function addcl() {
-			let parent = this.parentNode.parentNode;
-			parent.classList.add("focus");
+	function addcl() {
+		let parent = this.parentNode.parentNode;
+		parent.classList.add("focus");
+	}
+
+	function remcl() {
+		let parent = this.parentNode.parentNode;
+		if (this.value == "") {
+			parent.classList.remove("focus");
 		}
-
-		function remcl() {
-			let parent = this.parentNode.parentNode;
-			if (this.value == "") {
-				parent.classList.remove("focus");
-			}
-		}
+	}
 
 
-		inputs.forEach(input => {
-			input.addEventListener("focus", addcl);
-			input.addEventListener("blur", remcl);
-		});
-	</script>
-	{% endblock script %}
+	inputs.forEach(input => {
+		input.addEventListener("focus", addcl);
+		input.addEventListener("blur", remcl);
+	});
+</script>
+{% endblock script %}

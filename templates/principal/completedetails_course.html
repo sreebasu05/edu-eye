@@ -4,36 +4,37 @@
 {% block body %}
 {% if units %}
 <div class="container">
-  <h1 class="title"> {{ course.name}} {{ course.class_no}}</h1>
-  <hr>
+  <div class="card bg-light mb-3 mt-3">
+    <div class="card-body" style="background-color:#fff">
+      <h1 class="title"> {{ course.name}} {{ course.class_no}}</h1>
+      <hr>
 
-  <table class="table">
-    <thead class="table-dark">
-      <th scope="col">S.No</th>
-      <th scope="col">Unit Name</th>
-    </thead>
-    <tbody>
-      {%  for c in units %}
+      <table class="table table-borderless">
+        <thead >
+          <tr class="tablehead">
+            <th scope="col">S.No</th>
+            <th scope="col">Unit Name</th>
+          </tr>
 
-      <tr>
+        </thead>
+        <tbody>
+          {%  for c in units %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ c.name }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        {% else %}
+        <h6 style="margin-top: 100px;color: #c9302c"> No units present!!! </h6>
+        {% endif %}
+      </table>
+    </div>
 
-        <th scope="row">{{ forloop.counter }}</th>
-        <td>{{ c.name }}</td>
-
-
-
-
-      </tr>
-      {% endfor %}
-    </tbody>
-
-
-    {% else %}
-
-    <h6 style="margin-top: 100px;color: #c9302c"> No units present!!! </h6>
-
-    {% endif %}
-
-  </table>
+  </div>
 </div>
-  {% endblock body %}
+
+<div class="container">
+
+</div>
+{% endblock body %}
