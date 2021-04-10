@@ -18,8 +18,8 @@ def TeachProfile(request):
 
 
 def CreateProfile(request):
-    mail = request.user.email
-    print(mail)
+    if(TeacherProfile.objects.filter(teacher=request.user).exists()):
+        return render(request, 'teacher/home.html')
     if request.method == 'POST':
         fm = TeacherProfileForm(request.POST)
         if fm.is_valid():

@@ -141,9 +141,9 @@ def login_view(request):
             login(request, user)
             
             if request.user.is_student:
-                return redirect('home_student')
+                return redirect('profile_student')
             if request.user.is_teacher:
-                return redirect('home_teacher')
+                return redirect('profileform_teacher')
 
             
 
