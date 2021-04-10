@@ -115,16 +115,30 @@ def isCompleteUint(request, bid, unitid):
 
 
 
-def pie_chart(request):
-    labels = [2,3,4]
-    data = [2,3,4]
-    teacher = TeacherProfile.objects.get(teacher=request.user)
-    query_set = TeacherBatchCourse.objects.filter(teacher_details=teacher)
-    print(query_set)
+def pie_chart(request, bid):
+    batchcourse = BatchCourse.objects.get(pk=bid)
+    course=batchcourse.course
 
-    for q in query_set:
-        i = TrackProgressBatchCourse.objects.filter(batchcourse=q.batchcourse)
-        print(i)
+    labels = []
+    batchcourses = BatchCourse.objects.filter(course=course)
+    for bc in batchcourses:
+        x=TeacherBatchCourse.objects.get(batchcourse=bc).teacher_details.first_name
+        labels.append(x)
+    print(labels)
+
+    data = []
+    for bc in batchcourses:
+        tp=TrackProgressBatchCourse.objects.filter(batchcourse=bc)
+        ctr=0
+        for u in tp:
+            if u.is_completed==True:
+                ctr+=1;
+        if ctr:
+            data.append(ctr)
+        else:
+            data.append(0)
+    print(data)
+
 
     return render(request, 'teacher/pie_chart.html', {
         'labels': labels,

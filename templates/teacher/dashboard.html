@@ -13,6 +13,7 @@
             <td scope="col">Batch</td>
             <td scope="col">Course</td>
             <td scope="col">Status</td>
+            <td scope="col">Overview</td>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +24,7 @@
             <td>{{teach.batchcourse.batch}}</td>
             <td>{{teach.batchcourse.course}}</td>
             <td> <a href="{% url 'unit_teacher' teach.batchcourse.id %}" class="btn">View</a></td>
-          </tr>
+            <td> <a href="{% url 'pie-chart' teach.batchcourse.id %}" class="btn">View</a></td>          </tr>
           {% endfor%}
         </tbody>
       </table>

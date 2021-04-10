@@ -11,6 +11,6 @@ urlpatterns = [
     path('unit_complete_teacher/<int:bid>/<int:unitid>',views.isCompleteUint,name="unit_complete_teacher"),
     # path('unit_progress',views.unit_progress,name="unit_progress"),
 
-    path('pie-chart', views.pie_chart, name='pie-chart'),
+    path('pie-chart/<int:bid>', views.pie_chart, name='pie-chart'),
 
 ]
