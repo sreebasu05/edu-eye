@@ -180,6 +180,7 @@ class Unit(models.Model):
     unit_no = models.IntegerField()
     name = models.TextField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    ideallecture = models.IntegerField(default=5)
     def __str__(self):
         return str(self.name)+ " - " + str(self.course.name)
 
@@ -189,7 +190,7 @@ class Unit(models.Model):
 class TrackProgressBatchCourse(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, null=True)
     batchcourse = models.ForeignKey(BatchCourse, on_delete=models.CASCADE,null=True)
-    
+
     is_completed = models.BooleanField(default=False)
     rating = models.IntegerField(default=0)
     students_polled = models.IntegerField(default=0)

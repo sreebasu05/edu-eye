@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='login')
 def home_HOD(request):
     if request.user.is_principal ==True:
-        return render(request, 'principal/home.html')
+        return redirect('profile_teacher')
     else:
         print("NOT A HOD!! login as HOD :P")
         return redirect('login')
@@ -32,7 +32,7 @@ def add_course(request):
                     course= curr_course,
                 ).save()
                 messages.success(request,'created')
-                return render(request,'principal/home.html')
+                return redirect('profile_teacher')
                 # return render(request,'teacher/home.html')
             else:
                 messages.error(request, 'Please enter valid details')
@@ -96,7 +96,7 @@ def add_unit(request, id):
                     unit= u,
                     batchcourse= b,
                 ).save()
-                return render(request,'principal/home.html')
+                return redirect('profile_teacher')
             # return render(request,'teacher/home.html')
             else:
                 messages.error(request, 'Please enter valid details')

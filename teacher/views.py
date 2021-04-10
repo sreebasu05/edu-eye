@@ -66,6 +66,11 @@ def unitdetail(request, bid):
         if request.user.is_teacher ==True:
             batchdetail = TrackProgressBatchCourse.objects.filter(batchcourse_id=bid)
             print(batchdetail)
+            rating = []
+            for bd in batchdetail:
+                if bd.is_completed==True:
+                    x=bd.rating/bd.students_polled
+                    rating
             # print(batchdetail.unit.unit_no)
             # print(batchdetail.batchcourse)
             # print(batchdetail)
@@ -96,7 +101,7 @@ def isCompleteUint(request, bid, unitid):
             return render(request,'teacher/dashboard.html',{'Teaches':Teaches})
         else:
             print("hello")
-            return render(request,'teacher/unitform.html',{'bid':bid,'unitid':unitid})
+            return render(request,'teacher/unitdash.html',{'bid':bid,'unitid':unitid})
     else:
         print("NOT A Teacher!! login as teacher :P")
         return redirect('login')
@@ -137,9 +142,24 @@ def pie_chart(request, bid):
         else:
             data.append(0)
     print(data)
-
+    labels2=[]
+    data2A=[]
+    data2B=[]
+    tp=TrackProgressBatchCourse.objects.filter(batchcourse=batchcourse)
+    for t in tp:
+        if t.is_completed==True:
+            x = t.unit.name
+            y1 = t.lecture_taken
+            y2 = t.unit.ideallecture
+            labels2.append(x)
+            data2A.append(y1)
+            data2B.append(y2)
 
     return render(request, 'teacher/pie_chart.html', {
         'labels': labels,
         'data': data,
+        'labels2': labels2,
+        'data2A': data2A,
+        'data2B' : data2B
+
     })
