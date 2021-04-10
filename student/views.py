@@ -126,8 +126,15 @@ def giveRating(request,bid):
             track.rating = track.rating + int(rating)
             track.students_polled =track.students_polled+1
             track.save()
-
-            return render(request,'student/home.html')
+            uid = request.user.id
+            student = StudentProfile.objects.get(student=User.object.get(id=uid))
+            print(student.first_name)
+            courses = BatchCourse.objects.filter(batch=student.student_batch)
+            context = {
+                'courses': courses,
+                'student':student,
+            }
+            return render(request, 'student/student_dash.html', context)
         else:
             print("hello")
             return render(request,'student/unit.html',{'bid':bid})

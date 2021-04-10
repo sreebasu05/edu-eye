@@ -3,75 +3,73 @@
 {% load crispy_forms_tags %}
 {% block body %}
 
-    {% if batches %}
-    <div class="container">
-      <div class="card mb-3 mt-3">
-        <div class="card-body" style="background-color:#fff">
-          <h1 class="title">{{batches.0.batchcourse.course}}</h1>
-          <table class="table table-borderless">
-            <thead>
-              <tr class="tablehead">
-                <td scope="col">S.No.</td>
-                <td scope="col">Unit No</td>
-                <td scope="col">Unit Name</td>
-                <td scope="col">Status</td>
-              </tr>
-            </thead>
-            <tbody>
-              {% for batch in batches %}
-              <tr>
-                <th scope="row">{{ forloop.counter }}</th>
+{% if batches %}
+<div class="container">
+  <div class="card mb-3 mt-3">
+    <div class="card-body" style="background-color:#fff">
+      <h1 class="title">{{batches.0.batchcourse.course}}</h1>
+      <table class="table table-borderless">
+        <thead>
+          <tr class="tablehead">
+            <td scope="col">S.No.</td>
+            <td scope="col">Unit No</td>
+            <td scope="col">Unit Name</td>
+            <td scope="col">Status</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for batch in batches %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
 
-                <td>{{ batch.unit.unit_no }}</td>
-                <td>{{ batch.unit.name }}</td>
-                {% if batch.is_completed %}
-                <td>
-                <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-info mx-2" data-toggle="modal"
-                                                data-target="#exampleModal1">
-                                                Give Rating for this Unit
-                                        </button>
+            <td>{{ batch.unit.unit_no }}</td>
+            <td>{{ batch.unit.name }}</td>
+            {% if batch.is_completed %}
+            <td>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal1">
+                Give Rating for this Unit
+              </button>
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal1" tabindex="-1"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                        <form method="POST" action="{%url 'giveRating' bid=batch.id%}">
-                                                                    {% csrf_token %}
-                                                                    
-                                                                    
-                                                                      <input type="number" class="form-control" name="rating" id="exampleInputPassword1" placeholder="Rating 1--10">
-                                                                    
-                                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                                  </form>
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <form method="POST" action="{%url 'giveRating' bid=batch.id%}">
+                        {% csrf_token %}
 
-                                                                </div>
-                                                                
-                                                                
-                                                        </div>
-                                                </div>
-                                        </div>
-                
-                
-                </td>
-                {% else %}
-                <td>not completed yet</td>
-                {% endif %}
-                
-              </tr>
-              {% endfor%}
-            </tbody>
-          </table>
-        </div>
 
-      </div>
+                        <input type="number" class="form-control" name="rating" id="exampleInputPassword1" placeholder="Rating 1--10">
+                        <br>
+                        <button type="submit" class="btn">Submit</button>
+                      </form>
+
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+
+            </td>
+            {% else %}
+            <td>not completed yet</td>
+            {% endif %}
+
+          </tr>
+          {% endfor%}
+        </tbody>
+      </table>
     </div>
 
+  </div>
+</div>
 
-    {% else %}
-    <p>There are no units assigned in this course yet.</p>
+
+{% else %}
+<p>There are no units assigned in this course yet.</p>
 
 {% endif %}
 

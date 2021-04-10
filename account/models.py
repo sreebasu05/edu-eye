@@ -90,7 +90,7 @@ class Course(models.Model):
                   ("HINDI", "Hindi"), ("SCI", "Science"))
 
     name = models.TextField(default=1,choices=SUBJECT)
-    class_no = models.IntegerField(unique=True)
+    class_no = models.IntegerField()
 
     def __str__(self):
         return str(self.name) +"_"+str(self.class_no)
