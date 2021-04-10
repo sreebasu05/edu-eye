@@ -1,0 +1,11 @@
+<table class="table">
+    {% for teach in Teaches%}
+    <thead>
+      <tr>
+        <th scope="col">{{teach.batchcourse.batch}}</th>
+        <th scope="col">{{teach.batchcourse.course}}</th>
+        <th scope="col"> <a href="{% url 'unit_teacher' teach.batchcourse.id %}" class="list-group-item list-group-item-action">Unit Details</a></th>
+      </tr>
+    </thead>
+    {% endfor%}
+  </table>

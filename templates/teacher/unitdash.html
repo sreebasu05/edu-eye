@@ -1,0 +1,12 @@
+<table class="table">
+    {% for batchdetail in batchdetails%}
+    <thead>
+      <tr>
+        <th scope="col">{{batchdetail.unit.unit_no}}</th>
+      </tr>
+      <tr>
+        <th scope="col">{{batchdetail.unit.name}}</th>
+      </tr>
+    </thead>
+    {% endfor%}
+  </table>

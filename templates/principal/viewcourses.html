@@ -17,6 +17,7 @@
         <th scope="col">Course Code</th>
         <th scope="col">Course Name</th>
         <th scope="col">Actions</th>
+        <th scope="col">Add Unit</th>
         </tr>
         {%  for c in courses %}
 
@@ -26,11 +27,15 @@
       <tr>
 
         <th scope="row">{{ forloop.counter }}</th>
-        <td>{{ c.code }}</td>
+        <td>{{ c.class_no }}</td>
         <td>{{ c.name }}</td>
         <td>
          
         <a href="{%url 'completedetails_course' c.id %}" class="btn btn-info text-white">View</a>
+        </td>
+        <td>
+         
+        <a href="{%url 'add_unit' c.id %}" class="btn btn-info text-white">Add Unit</a>
         </td>
         
 

@@ -86,13 +86,13 @@ class Session(models.Model):
 
 # to record the course name :::: Maths-6, English-5
 class Course(models.Model):
-    SUBJECT = ((1, "Mathematics"), (2, "English"),
-                  (3, "Hindi"), (4, "Science"))
-    class_no = models.IntegerField(unique=True)
-    name = models.IntegerField(default=1,choices=SUBJECT)
+    SUBJECT = (("MATH", "Mathematics"), ("ENG", "English"),
+                  ("HINDI", "Hindi"), ("SCI", "Science"))
 
+    name = models.TextField(default=1,choices=SUBJECT)
+    class_no = models.IntegerField(unique=True)
     def __str__(self):
-        return self.name
+        return str(self.name) +"_"+str(self.class_no)
 
 
 # to record the batch details :::: Class-6, Class-5
@@ -132,14 +132,16 @@ class StudentProfile(models.Model):
 class TeacherProfile(models.Model):
 
     GENDER = (('M','MALE'),('F','FEMALE'))
-    SUBJECT = ((1, "Mathematics"), (2, "English"),
-                  (3, "Hindi"), (4, "Science"))
+    SUBJECT = (("MATH", "Mathematics"), ("ENG", "English"),
+                  ("HINDI", "Hindi"), ("SCI", "Science"))
+
+    department = models.TextField(default=1,choices=SUBJECT)
 
     teacher = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(default='M',choices=GENDER, max_length=1)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    department = models.IntegerField(default=1,choices=SUBJECT)
+
     phone = models.IntegerField()
     dob = models.DateField()
 
@@ -169,7 +171,6 @@ class TeacherBatchCourse(models.Model):
 
     teacher_details = models.ForeignKey(TeacherProfile, on_delete=models.CASCADE)
     batchcourse = models.OneToOneField(BatchCourse, on_delete=models.CASCADE)
-
     def __str__(self):
         return str(self.teacher_details) + " - " + str(self.batchcourse)
 
@@ -183,14 +184,19 @@ class Unit(models.Model):
 
 
 # this will maintain record of completed units of coursebatch
+
 class TrackProgressBatchCourse(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, null=True)
     batchcourse = models.ForeignKey(BatchCourse, on_delete=models.CASCADE,null=True)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
 
     class Meta:
         unique_together = ('unit', 'batchcourse')
 
     def __str__(self):
-        return   str(self.unit.name) +" - "+ str(self.batchcourse.batch.name)+" - "+str(self.batchcourse.course.name)
+<<<<<<< HEAD
+        return   str(self.unit.name) +" - "+ str(self.batchcourse.batch.in_class)+self.batchcourse.batch.section+" - "+str(self.batchcourse.course.name)
+=======
+        return   str(self.unit.name)
+>>>>>>> ac66c02132daeefb48b0aed67dd47ce8bdd36e94
