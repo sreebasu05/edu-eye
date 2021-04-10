@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import *
+from django.contrib import messages
 from account.models import *
 # Create your views here.
 def add_course(request):
@@ -8,6 +9,16 @@ def add_course(request):
         if fm.is_valid():
             instance = fm.save(commit=False)
             instance.save()
+
+            i = instance.id
+            curr_course = Course.objects.get(pk = i)
+            batches = Batch.objects.filter(in_class = curr_course.class_no)
+            for b in batches:
+                BatchCourse.objects.create(
+                batch= b,
+                course= curr_course,
+            ).save()
+            messages.success(request,'created')
             return render(request,'principal/home.html')
             # return render(request,'teacher/home.html')
         else:
@@ -18,7 +29,9 @@ def add_course(request):
         return render(request,'principal/create_course.html',{'form':fm})
 
 def view_courses(request):
-    courses = Course.objects.all()
+    teacher_profile = TeacherProfile.objects.get(teacher= request.user)
+    print(teacher_profile.department)
+    courses = Course.objects.filter(name= teacher_profile.department)
     print(courses)
     context ={'courses' : courses}
     return render(request,'principal/viewcourses.html',context)
@@ -32,12 +45,25 @@ def completedetails_course(request,id):
     return render(request,'principal/completedetails_course.html',context)
 
 
-def add_unit(request):
+def add_unit(request, id):
+    c = Course.objects.get(pk=id)
+    print(c)
     if request.method == 'POST':
         fm = UnitForm(request.POST)
         if fm.is_valid():
+
             instance = fm.save(commit=False)
+            instance.course = c
             instance.save()
+            i=instance.id
+            u = Unit.objects.get(pk=i)
+            batchcourses = BatchCourse.objects.filter(course = c)
+            # print(batchcourses)
+            for b in batchcourses:
+                TrackProgressBatchCourse.objects.create(
+                unit= u,
+                batchcourse= b,
+            ).save()
             return render(request,'principal/home.html')
         # return render(request,'teacher/home.html')
         else:
