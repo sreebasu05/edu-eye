@@ -1,16 +1,57 @@
 {% extends 'basic.html' %}
 
 {% block body %}
-  <div id="container" style="width: 75%;">
-    <canvas id="pie-chart"></canvas>
+<div class="container">
+  <div class="card mb-3 mt-3">
+    <div class="card-body" style="background-color:#fff">
+      <h1 class="title"></h1>
+      <div class="">
+        <canvas id="pie-chart1"></canvas>
+      </div>
+      <div class="">
+        <canvas id="pie-chart2"></canvas>
+      </div>
+    </div>
+
   </div>
-<div class="">
-  <canvas id="pie-chart"></canvas>
 </div>
+
+
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   <script>
 
-    var config = {
+    var config1 = {
+      type: 'bar',
+      data: {
+        datasets: [{
+          data: {{ data2A|safe }},
+          backgroundColor: [
+            '#fbdcc4', '#fbdcc4', '#fbdcc4', '#fbdcc4', '#fbdcc4'
+          ],
+          label: 'Lectures-Taken'
+        },{
+          data: {{ data2B|safe }},
+          backgroundColor: [
+            '#7d0633', '#7d0633', '#7d0633', '#7d0633', '#7d0633'
+          ],
+          label: 'Ideal-Lectures'
+        }],
+        labels: {{ labels2|safe }}
+      },
+
+      options: {
+        scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          },
+        responsive: true
+    }
+    };
+    var config2 = {
       type: 'bar',
       data: {
         datasets: [{
@@ -21,18 +62,27 @@
           color:[
             '#fbdcc4'
           ],
-          label: 'Population'
+          label: 'Units-finished'
         }],
         labels: {{ labels|safe }}
       },
       options: {
+        scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          },
         responsive: true
       }
     };
 
     window.onload = function() {
-      var ctx = document.getElementById('pie-chart').getContext('2d');
-      window.myPie = new Chart(ctx, config);
+      var ctx = document.getElementById('pie-chart1').getContext('2d');
+      window.myPie = new Chart(ctx, config1);
+      var ctx = document.getElementById('pie-chart2').getContext('2d');
+      window.myPie = new Chart(ctx, config2);
     };
 
   </script>
