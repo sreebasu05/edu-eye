@@ -16,9 +16,11 @@
 
   
 ## Demo Video Link:
-
+ <a href="https://drive.google.com/file/d/1z6HRmKvwHbyJeAw8UI3jRFIoDAlCvw_X/view?usp=sharing"> Edu-Eye_DemoVideo </a>
+  
   
 ## Presentation Link:
+  <a href="https://docs.google.com/presentation/d/1qDjtVyBHH7v9iHXU7Hhy2lMLnTUyDvRJNKAJYCGT5Go/edit?usp=sharing"> Edu-Eye_PPT </a>
   
   
 # Table of Contents
@@ -65,6 +67,13 @@ Team Name: Looping-develoopszz
 * [Gursimran Kaur Saine](https://github.com/gursimran18)
 * [S P Ramya Pratyusha](https://github.com/ramya-4004)
 * [Sreemoyee Basu](https://github.com/sreebasu05)
+
+# <a name="images"></a>Images
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/HomePage.png) <br><br>
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/UserProfile.png)<br><br>
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/Hod%20Dashboard.png)<br><br>
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/CourseOverview.png)<br><br>
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/Student%20Review%20Dashboard.png)<br><br>
 
 
 ### Made at:
