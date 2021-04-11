@@ -9,4 +9,5 @@ urlpatterns = [
     path('completedetails_course/<int:id>',views.completedetails_course,name="completedetails_course"),
     path('add_teacherbatch', views.add_teacherbatch, name="add_teacherbatch"),
     path('coursebatchdetails', views.coursebatchdetails, name="coursebatchdetails"),
+    path('status/<int:uid>', views.principal_graph, name="status"),
 ]

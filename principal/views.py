@@ -49,9 +49,7 @@ def add_course(request):
 @login_required(login_url='login')
 def view_courses(request):
     if request.user.is_principal ==True:
-        teacher_profile = TeacherProfile.objects.get(teacher= request.user)
-        print(teacher_profile.department)
-        courses = Course.objects.filter(name= teacher_profile.department)
+        courses = Course.objects.all()
         print(courses)
         context ={'courses' : courses}
         return render(request,'principal/viewcourses.html',context)
@@ -110,7 +108,7 @@ def add_unit(request, id):
     else:
         print("NOT A HOD!! login as HOD :P")
         return redirect('login')
-    
+
 
 @login_required(login_url='login')
 def coursebatchdetails(request):
@@ -143,6 +141,38 @@ def add_teacherbatch(request,bc):
         else:
             fm=TeacherBatchForm()
             return render(request,'principal/create_teacherbatch.html',{'form':fm})
+    else:
+        print("NOT A HOD!! login as HOD :P")
+        return redirect('login')
+
+
+@login_required(login_url='login')
+def principal_graph(request, uid):
+    if request.user.is_principal == True:
+        course = Course.objects.get(id=uid)
+        labels = []
+        batchcourses = BatchCourse.objects.filter(course=course)
+        for bc in batchcourses:
+            x = TeacherBatchCourse.objects.get(batchcourse=bc).teacher_details.first_name
+            labels.append(x)
+        print(labels)
+
+        data = []
+        for bc in batchcourses:
+            tp = TrackProgressBatchCourse.objects.filter(batchcourse=bc)
+            ctr = 0
+            for u in tp:
+                if u.is_completed == True:
+                    ctr += 1;
+            if ctr:
+                data.append(ctr)
+            else:
+                data.append(0)
+        print(data)
+        return render(request, 'principal/progress.html', {
+            'labels': labels,
+            'data': data,
+        })
     else:
         print("NOT A HOD!! login as HOD :P")
         return redirect('login')
