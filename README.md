@@ -16,7 +16,7 @@
 
   
 ## Demo Video Link:
- <a href="https://drive.google.com/file/d/1z6HRmKvwHbyJeAw8UI3jRFIoDAlCvw_X/view?usp=sharing"> Edu-Eye_DemoVideo </a>
+ <a href="https://www.youtube.com/watch?v=Y5Z7RBi93wQ"> Edu-Eye_DemoVideo </a>
   
   
 ## Presentation Link:
@@ -31,16 +31,17 @@
 
 
 # <a name="features"></a>Features
-  1) Three User Roles - Student, Teacher, Hod
-  2) Hod can adds courses and units for his department
-  3) Teacher after completing an unit updates his profile
-  4) Teacher can compare his progress in a course with other teachers
-  5) Teacher can compare his speed vs the ideal rate for the completion of units
-  6) Student can rate his understanding after completion of an unit 
-  7) Student can see all the units that are completed in his/her class
-  8) Teacher can see the understanding rate of his/her class
-  9) Hod can check the progress of his department teachers
-  10) Graphical representation is used for overview of courses
+  1) Three User Roles - Student, Teacher, Principal 
+  2) Log In, Sign Up, Reset Password etc Features
+  3) Principal can adds courses and units
+  4) Teacher after completing an unit updates his profile
+  5) Teacher can compare his progress in a course with other teachers
+  6) Teacher can compare his speed vs the ideal rate for the completion of units
+  7) Student can rate his understanding after completion of an unit 
+  8) Student can see all the units that are completed in his/her class
+  9) Teacher can see the understanding rate of his/her class
+  10) Principal gets graphical representation of the progress of all teacher for every course.  
+  11) Graphical representation is used for overview of courses
 
 ## <a name="technologystack"></a>Technology Stack:
   1) Django Framework
@@ -73,6 +74,7 @@ Team Name: Looping-develoopszz
 ![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/Hod%20Dashboard.png)<br><br>
 ![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/CourseOverview.png)<br><br>
 ![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/Student%20Review%20Dashboard.png)<br><br>
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/HodCoursesOverview.png)<br><br>
 
 
 ### Made at:
