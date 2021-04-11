@@ -24,10 +24,10 @@
   
   
 # Table of Contents
-* [ Features ](##features)
-* [Technology Stack](##technologystack)
-* [Instructions to run](##installation)
-* [Contributors](##contributors)
+* [ Features ](#features)
+* [Technology Stack](#technologystack)
+* [Instructions to run](#installation)
+* [Contributors](#contributors)
 
 
 # <a name="features"></a>Features
@@ -52,12 +52,11 @@
   7) Chart.JS
   
 ## <a name="installation"></a>Instructions to run
-* $ git clone https://github.com/sreebasu05/Seavs <br>
-* $ cd Seavs <br>
-* Seavs $ pip install -r requirements.txt 
-* Seavs $ python manage.py makemigrations 
-* Seavs $ python manage.py migrate 
-* Seavs $ python manage.py runserver   
+* $ git clone https://github.com/sreebasu05/edu-eye <br>
+* $ cd edu-eye <br>
+* edu-eye $ python manage.py makemigrations 
+* edu-eyes $ python manage.py migrate 
+* edu-eye $ python manage.py runserver   
 
 ## <a name="contributors"></a>Contributors:
 
