@@ -16,16 +16,18 @@
 
   
 ## Demo Video Link:
-
+ <a href="https://drive.google.com/file/d/1z6HRmKvwHbyJeAw8UI3jRFIoDAlCvw_X/view?usp=sharing"> Edu-Eye_DemoVideo </a>
+  
   
 ## Presentation Link:
+  <a href="https://docs.google.com/presentation/d/1qDjtVyBHH7v9iHXU7Hhy2lMLnTUyDvRJNKAJYCGT5Go/edit?usp=sharing"> Edu-Eye_PPT </a>
   
   
 # Table of Contents
-* [ Features ](##features)
-* [Technology Stack](##technologystack)
-* [Instructions to run](##installation)
-* [Contributors](##contributors)
+* [ Features ](#features)
+* [Technology Stack](#technologystack)
+* [Instructions to run](#installation)
+* [Contributors](#contributors)
 
 
 # <a name="features"></a>Features
@@ -50,12 +52,11 @@
   7) Chart.JS
   
 ## <a name="installation"></a>Instructions to run
-* $ git clone https://github.com/sreebasu05/Seavs <br>
-* $ cd Seavs <br>
-* Seavs $ pip install -r requirements.txt 
-* Seavs $ python manage.py makemigrations 
-* Seavs $ python manage.py migrate 
-* Seavs $ python manage.py runserver   
+* $ git clone https://github.com/sreebasu05/edu-eye <br>
+* $ cd edu-eye <br>
+* edu-eye $ python manage.py makemigrations 
+* edu-eyes $ python manage.py migrate 
+* edu-eye $ python manage.py runserver   
 
 ## <a name="contributors"></a>Contributors:
 
@@ -65,6 +66,13 @@ Team Name: Looping-develoopszz
 * [Gursimran Kaur Saine](https://github.com/gursimran18)
 * [S P Ramya Pratyusha](https://github.com/ramya-4004)
 * [Sreemoyee Basu](https://github.com/sreebasu05)
+
+# <a name="images"></a>Images
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/HomePage.png) <br><br>
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/UserProfile.png)<br><br>
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/Hod%20Dashboard.png)<br><br>
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/CourseOverview.png)<br><br>
+![alt text](https://github.com/sreebasu05/edu-eye/blob/main/static/features/Student%20Review%20Dashboard.png)<br><br>
 
 
 ### Made at:
